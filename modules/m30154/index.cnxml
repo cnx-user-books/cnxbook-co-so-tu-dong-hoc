@@ -1,0 +1,831 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Mô hình hóa các hệ thống vật lý</title>
+  <metadata>
+  <md:content-id>m30154</md:content-id><md:title>Mô hình hóa các hệ thống vật lý</md:title>
+  <md:abstract>•	ĐẠI CƯƠNG.
+•	PHƯƠNG TRÌNH CỦA CÁC HỆ THỐNG CƠ KHÍ</md:abstract>
+  <md:uuid>848e9a6f-869e-4dae-a376-868cc5914f1f</md:uuid>
+</metadata>
+
+<content>
+    <section id="id-861456956858">
+      <title>ĐẠI CƯƠNG.</title>
+      <para id="id21723992">Một trong những công việc quan trọng nhất trong việc phân giải và thiết kế các hệ tự kiểm là mô hình hóa hệ thống. Ở những chương trước, ta đã đưa vào một số phương pháp mô hình hóa hệ thống thông dụng. Hai phương pháp chung nhất là hàm chuyển và phương trình trạng thái. Phương pháp hàm chuyển chỉ có giá trị đối với các hệ tuyến tính, không đổi theo thời gian. Trong khi các phương trình trạng thái, là những phương trình vi phân cấp một có thể dùng mô tả các hệ tuyến tính và cả phi tuyến. Vì trong thực tế, tất cả các hệ vật lý đều phi tuyến trong một vài phạm vi hoạt động. Nên để có thể sử dụng hàm chuyển chuyển và các phương trình trạng thái tuyến tính, hệ thống phải được tuyến tính hoá, hoặc là hoạt động của nó phải được hạn chế trong vùng tuyến tính.</para>
+      <para id="id21724029">Dù sự phân giải và thiết kế các hệ điều khiển tuyến tính đã được phát triển tốt, nhưng bản sao của nó cho các hệ phi tuyến thì thường rất phức tạp.</para>
+      <para id="id21724043">Kỹ thuật điều khiển thường phải xác định không chỉ việc làm sao để mô tả chính xác hệ thống một cách toán học, mà còn phải, quan trọng hơn, làm sao để đặt các giả thuyết đúng, và phép tính xấp xỉ (nếu cần thiết) sao cho hệ thống có thể được đặc trưng hóa một cách tương xứng bởi một mô hình toán học tuyến tính.</para>
+      <para id="id21724065">Thật quan trọng để thấy rằng, kỹ thuật điều khiển hiện đại phải dựa trên sự mô hình hoá hệ thống sao cho vấn đề phân giải và thiết kế có thể phù hợp với các lời giải nhờ máy tính. Như vậy, chủ đích của chương này là:</para>
+      <para id="id21724083">- Để chứng tỏ sự mô hình hoá toán học của các hệ thông điều khiển và các bộ phận. </para>
+      <para id="id21724094">- Để chứng tỏ bằng cách nào sự mô hình hoá sẽ dẫn đến các lời giải trên máy tính.</para>
+    </section>
+    <section id="id-218734805958">
+      <title>PHƯƠNG TRÌNH CỦA CÁC MẠCH ĐIỆN.</title>
+      <para id="id22015268">Phương pháp cổ điển để viết các phương trình của mạch điện được đặt trên cơ sở hai định luật về nút và vòng của kirchhoff. Tuy hai định luật này thì đơn giản nhưng các phương trình kết quả thì không tự nhiên đối với máy tính.</para>
+      <para id="id22015286">Một phương pháp mới để viết các phương trình mạch điện là phương pháp biến trạng thái. Vì các mạch điện trong phần lớn các hệ tự kiểm thì không phức tạp lắm, ta sẽ trình bày ở đây chỉ ở mức độ giới thiệu. Những lý giải chi tiết về các phương trình trạng thái cho mạch điện có thể tìm ở các giáo trình lý thuyết mạch.</para>
+      <figure id="id22015307">
+        <media id="id1165049518566" alt=""><image src="../../media/graphics1-6e21.png" mime-type="image/png" height="119" width="295"/></media>
+      </figure>
+      <para id="id22015331">H.5_1.</para>
+      <para id="id22015335">Xem mạch RLC như hình H.5_1. Phương cách thực hành là xem dòng điện trong cuộn cảm L và điện thế ngang qua tụ C là các biến trạng thái (tức i(t) và ec(t)). Lý do của sự chọn lựa này là vì các biến trạng thái thì liên hệ trực tiếp với bộ phận tích trữ năng lượng của một hệ thống. Trong trường hợp này, cuộn cảm tích trữ động năng và tụ tích trữ thế năng.</para>
+      <para id="id22015363">Bằng cách chọn i(t) và ec(t) là các biến trạng thái, ta có một sự mô tả hoàn toàn về quá khứ (tức trị giá đầu của chúng) hiện tại và trạng thái tương lai của mạch.</para>
+      <para id="id22015377">Ta có:</para>
+      <para id="id22015382">Dòng điện trong tụ C : 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>C</m:mi><m:mrow><m:mfrac><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext>de</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mi>c</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">=</m:mo><m:mi>i</m:mi></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{C {  { ital "de" rSub { size 8{c} }  \( t \) }  over  { ital "dt"} } =i \( t \) } {}</m:annotation></m:semantics></m:math>(5.1)</para>
+      <para id="id21545150">Điện thế ngang qua L : 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>L</m:mi><m:mrow><m:mfrac><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>di</m:mtext></m:mrow></m:mstyle><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">=</m:mo><m:mrow><m:mo stretchy="false">−</m:mo><m:msub><m:mi>e</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>c</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">−</m:mo><m:mstyle fontstyle="italic"><m:mrow><m:mtext>Ri</m:mtext></m:mrow></m:mstyle></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">+</m:mo><m:mi>e</m:mi></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{L {  { ital "di" \( t \) }  over  { ital "dt"} } = - e rSub { size 8{c} }  \( t \)  -  ital "Ri" \( t \) +e \( t \) } {}</m:annotation></m:semantics></m:math>(5.2)</para>
+      <para id="id21763584">Các phương trình trạng thái dưới dạng ma trận, được viết:</para>
+      <para id="id21763594"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow><m:mfenced open="[" close="]"><m:mtable><m:mtr><m:mtd><m:mrow><m:mfrac><m:mstyle fontsize="13pt"><m:mrow><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext>de</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mi>c</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mstyle fontsize="12pt"><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mrow></m:mstyle></m:mfrac><m:mrow/></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd><m:mstyle fontsize="12pt"><m:mrow><m:mfrac><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>di</m:mtext></m:mrow></m:mstyle><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mrow></m:mstyle></m:mfrac></m:mrow></m:mstyle></m:mtd></m:mtr></m:mtable></m:mfenced><m:mo stretchy="false">=</m:mo><m:mfenced open="[" close="]"><m:mstyle fontsize="12pt"><m:mrow><m:mtable><m:mtr><m:mtd><m:mrow><m:mn>0</m:mn><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mfrac><m:mn>1</m:mn><m:mstyle fontsize="12pt"><m:mrow><m:mi>C</m:mi></m:mrow></m:mstyle></m:mfrac></m:mrow></m:mstyle><m:mrow/></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mfrac><m:mrow><m:mo stretchy="false">−</m:mo><m:mn>1</m:mn></m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mi>L</m:mi></m:mrow></m:mstyle></m:mfrac></m:mrow></m:mstyle><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mfrac><m:mrow><m:mo stretchy="false">−</m:mo><m:mi>R</m:mi></m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mi>L</m:mi></m:mrow></m:mstyle></m:mfrac></m:mrow></m:mstyle><m:mrow/></m:mrow></m:mtd></m:mtr></m:mtable></m:mrow></m:mstyle></m:mfenced></m:mrow><m:mi/><m:mrow><m:mfenced open="[" close="]"><m:mstyle fontsize="12pt"><m:mrow><m:mtable><m:mtr><m:mtd><m:mrow><m:msub><m:mi>e</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>c</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo><m:mrow/></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>i</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle></m:mtd></m:mtr></m:mtable></m:mrow></m:mstyle></m:mfenced><m:mo stretchy="false">+</m:mo><m:mfenced open="[" close="]"><m:mstyle fontsize="12pt"><m:mrow><m:mtable><m:mtr><m:mtd><m:mrow><m:mn>0</m:mn><m:mrow/></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd><m:mfrac><m:mn>1</m:mn><m:mstyle fontsize="12pt"><m:mrow><m:mi>L</m:mi></m:mrow></m:mstyle></m:mfrac></m:mtd></m:mtr></m:mtable></m:mrow></m:mstyle></m:mfenced></m:mrow><m:mi>e</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ left [ matrix {
+ {  { size 13{ ital "de" rSub { size 8{c} }  \( t \) }}  over  { size 12{ ital "dt"} } }  {} ##
+ size 12{ {  { ital "di" \( t \) }  over  { size 12{ ital "dt"} } } } 
+}  right ]= left [ size 12{ matrix {
+0 {} #  size 12{ {  {1}  over  { size 12{C} } } }  {} ##
+ size 12{ {  { - 1}  over  { size 12{L} } } }  {} #  size 12{ {  { - R}  over  { size 12{L} } } } {}
+} }  right ]` left [ size 12{ matrix {
+e rSub { size 8{c} }  \( t \)  {} ##
+ size 12{i \( t \) } 
+} }  right ]+ left [ size 12{ matrix {
+0 {} ##
+ {  {1}  over  { size 12{L} } } 
+} }  right ]e \( t \) } {}</m:annotation></m:semantics></m:math>(5.3)</para>
+      <para id="id23232694">Thí dụ5_1 : Xem mạch điện như hình H.5_2.</para>
+      <figure id="id22479277">
+        <media id="id1165055950994" alt=""><image src="../../media/graphics2-b6b0.png" mime-type="image/png" height="107" width="268"/></media>
+      </figure>
+      <para id="id22479301">H.5_2</para>
+      <para id="id22479305">Điện thế ngang qua tụ ec(t), các dòng điện trong các cuộn cảm i1(t) và i2(t) được xem như là các biến số trạng thái.</para>
+      <para id="id22479333">Các phương trình trạng thái có được bằng cách viết điện thế ngang qua các cuộn cảm và dòng trong tụ.</para>
+      <para id="id22479344"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mstyle fontsize="13pt"><m:mrow><m:mrow><m:msub><m:mi>L</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mrow><m:mfrac><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext>di</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mstyle fontsize="12pt"><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">=</m:mo><m:mrow><m:mo stretchy="false">−</m:mo><m:msub><m:mi>R</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mrow><m:msub><m:mi>i</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">−</m:mo><m:msub><m:mi>e</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>c</m:mi></m:mrow></m:mstyle></m:msub></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">+</m:mo><m:mi>e</m:mi></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ size 13{L rSub { size 8{1} }  {  { size 12{ ital "di" rSub { size 8{1} }  \( t \) } }  over  { size 12{ ital "dt"} } } = - R rSub { size 8{1} } i rSub { size 8{1} }  \( t \)  - e rSub { size 8{c} }  \( t \) +e \( t \) }} {}</m:annotation></m:semantics></m:math>(5.4)</para>
+      <para id="id21547359"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mstyle fontsize="13pt"><m:mrow><m:mrow><m:msub><m:mi>L</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:mrow><m:mfrac><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext>di</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mstyle fontsize="12pt"><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">=</m:mo><m:mrow><m:mo stretchy="false">−</m:mo><m:msub><m:mi>R</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mrow><m:msub><m:mi>i</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">+</m:mo><m:msub><m:mi>e</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>c</m:mi></m:mrow></m:mstyle></m:msub></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ size 13{L rSub { size 8{2} }  {  { size 12{ ital "di" rSub { size 8{2} }  \( t \) } }  over  { size 12{ ital "dt"} } } = - R rSub { size 8{2} } i rSub { size 8{2} }  \( t \) +e rSub { size 8{c} }  \( t \) }} {}</m:annotation></m:semantics></m:math>(5.5)</para>
+      <para id="id21783349"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mstyle fontsize="13pt"><m:mrow><m:mrow><m:mi>C</m:mi><m:mrow><m:mfrac><m:mstyle fontsize="13pt"><m:mrow><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext>de</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mi>c</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mstyle fontsize="12pt"><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">=</m:mo><m:msub><m:mi>i</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">−</m:mo><m:msub><m:mi>i</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ size 13{C {  { size 13{ ital "de" rSub { size 8{c} }  \( t \) }}  over  { size 12{ ital "dt"} } } =i rSub { size 8{1} }  \( t \)  - i rSub { size 8{2} }  \( t \) }} {}</m:annotation></m:semantics></m:math>(5.6)</para>
+      <para id="id21044942">Sắp xếp lại các hệ số hằng, các phương trình trạng thái được viết dưới dạng chính tắc như sau:</para>
+      <para id="id21044954">
+        <m:math>
+          <m:semantics>
+            <m:mrow>
+              <m:mstyle fontsize="12pt">
+                <m:mrow>
+                  <m:mrow>
+                    <m:mrow>
+                      <m:mfenced open="[" close="]">
+                        <m:mtable>
+                          <m:mtr>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mfrac>
+                                  <m:mrow>
+                                    <m:mstyle fontstyle="italic">
+                                      <m:mrow>
+                                        <m:msub>
+                                          <m:mtext>di</m:mtext>
+                                          <m:mn>1</m:mn>
+                                        </m:msub>
+                                      </m:mrow>
+                                    </m:mstyle>
+                                    <m:mo stretchy="false">(</m:mo>
+                                    <m:mi>t</m:mi>
+                                    <m:mo stretchy="false">)</m:mo>
+                                  </m:mrow>
+                                  <m:mstyle fontstyle="italic">
+                                    <m:mrow>
+                                      <m:mtext>dt</m:mtext>
+                                    </m:mrow>
+                                  </m:mstyle>
+                                </m:mfrac>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                          </m:mtr>
+                          <m:mtr>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mfrac>
+                                  <m:mrow>
+                                    <m:mstyle fontstyle="italic">
+                                      <m:mrow>
+                                        <m:msub>
+                                          <m:mtext>di</m:mtext>
+                                          <m:mn>2</m:mn>
+                                        </m:msub>
+                                      </m:mrow>
+                                    </m:mstyle>
+                                    <m:mo stretchy="false">(</m:mo>
+                                    <m:mi>t</m:mi>
+                                    <m:mo stretchy="false">)</m:mo>
+                                  </m:mrow>
+                                  <m:mstyle fontstyle="italic">
+                                    <m:mrow>
+                                      <m:mtext>dt</m:mtext>
+                                    </m:mrow>
+                                  </m:mstyle>
+                                </m:mfrac>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                          </m:mtr>
+                          <m:mtr>
+                            <m:mtd>
+                              <m:mfrac>
+                                <m:mrow>
+                                  <m:mstyle fontstyle="italic">
+                                    <m:mrow>
+                                      <m:msub>
+                                        <m:mtext>de</m:mtext>
+                                        <m:mi>c</m:mi>
+                                      </m:msub>
+                                    </m:mrow>
+                                  </m:mstyle>
+                                  <m:mo stretchy="false">(</m:mo>
+                                  <m:mi>t</m:mi>
+                                  <m:mo stretchy="false">)</m:mo>
+                                </m:mrow>
+                                <m:mstyle fontstyle="italic">
+                                  <m:mrow>
+                                    <m:mtext>dt</m:mtext>
+                                  </m:mrow>
+                                </m:mstyle>
+                              </m:mfrac>
+                            </m:mtd>
+                          </m:mtr>
+                        </m:mtable>
+                      </m:mfenced>
+                      <m:mo stretchy="false">=</m:mo>
+                      <m:mfenced open="[" close="]">
+                        <m:mtable>
+                          <m:mtr>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mfrac>
+                                  <m:mrow>
+                                    <m:mo stretchy="false">−</m:mo>
+                                    <m:msub>
+                                      <m:mi>R</m:mi>
+                                      <m:mstyle fontsize="8pt">
+                                        <m:mrow>
+                                          <m:mn>1</m:mn>
+                                        </m:mrow>
+                                      </m:mstyle>
+                                    </m:msub>
+                                  </m:mrow>
+                                  <m:msub>
+                                    <m:mi>L</m:mi>
+                                    <m:mstyle fontsize="8pt">
+                                      <m:mrow>
+                                        <m:mn>1</m:mn>
+                                      </m:mrow>
+                                    </m:mstyle>
+                                  </m:msub>
+                                </m:mfrac>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mn>0</m:mn>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mfrac>
+                                  <m:mrow>
+                                    <m:mo stretchy="false">−</m:mo>
+                                    <m:mn>1</m:mn>
+                                  </m:mrow>
+                                  <m:msub>
+                                    <m:mi>L</m:mi>
+                                    <m:mstyle fontsize="8pt">
+                                      <m:mrow>
+                                        <m:mn>1</m:mn>
+                                      </m:mrow>
+                                    </m:mstyle>
+                                  </m:msub>
+                                </m:mfrac>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                          </m:mtr>
+                          <m:mtr>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mn>0</m:mn>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mfrac>
+                                  <m:mrow>
+                                    <m:mo stretchy="false">−</m:mo>
+                                    <m:msub>
+                                      <m:mi>R</m:mi>
+                                      <m:mstyle fontsize="8pt">
+                                        <m:mrow>
+                                          <m:mn>2</m:mn>
+                                        </m:mrow>
+                                      </m:mstyle>
+                                    </m:msub>
+                                  </m:mrow>
+                                  <m:msub>
+                                    <m:mi>L</m:mi>
+                                    <m:mstyle fontsize="8pt">
+                                      <m:mrow>
+                                        <m:mn>2</m:mn>
+                                      </m:mrow>
+                                    </m:mstyle>
+                                  </m:msub>
+                                </m:mfrac>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mfrac>
+                                  <m:mn>1</m:mn>
+                                  <m:msub>
+                                    <m:mi>L</m:mi>
+                                    <m:mstyle fontsize="8pt">
+                                      <m:mrow>
+                                        <m:mn>2</m:mn>
+                                      </m:mrow>
+                                    </m:mstyle>
+                                  </m:msub>
+                                </m:mfrac>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                          </m:mtr>
+                          <m:mtr>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mfrac>
+                                  <m:mn>1</m:mn>
+                                  <m:mi>C</m:mi>
+                                </m:mfrac>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mfrac>
+                                  <m:mrow>
+                                    <m:mo stretchy="false">−</m:mo>
+                                    <m:mn>1</m:mn>
+                                  </m:mrow>
+                                  <m:mi>C</m:mi>
+                                </m:mfrac>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:mn>0</m:mn>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                          </m:mtr>
+                        </m:mtable>
+                      </m:mfenced>
+                    </m:mrow>
+                    <m:mi/>
+                    <m:mrow>
+                      <m:mfenced open="[" close="]">
+                        <m:mtable>
+                          <m:mtr>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:msub>
+                                  <m:mi>i</m:mi>
+                                  <m:mn>1</m:mn>
+                                </m:msub>
+                                <m:mo stretchy="false">(</m:mo>
+                                <m:mi>t</m:mi>
+                                <m:mo stretchy="false">)</m:mo>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                          </m:mtr>
+                          <m:mtr>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:msub>
+                                  <m:mi>i</m:mi>
+                                  <m:mn>2</m:mn>
+                                </m:msub>
+                                <m:mo stretchy="false">(</m:mo>
+                                <m:mi>t</m:mi>
+                                <m:mo stretchy="false">)</m:mo>
+                                <m:mrow/>
+                              </m:mrow>
+                            </m:mtd>
+                          </m:mtr>
+                          <m:mtr>
+                            <m:mtd>
+                              <m:mrow>
+                                <m:msub>
+                                  <m:mi>e</m:mi>
+                                  <m:mi>c</m:mi>
+                                </m:msub>
+                                <m:mo stretchy="false">(</m:mo>
+                                <m:mi>t</m:mi>
+                                <m:mo stretchy="false">)</m:mo>
+                              </m:mrow>
+                            </m:mtd>
+                          </m:mtr>
+                        </m:mtable>
+                      </m:mfenced>
+                      <m:mo stretchy="false">+</m:mo>
+                      <m:mfrac>
+                        <m:mn>1</m:mn>
+                        <m:msub>
+                          <m:mi>L</m:mi>
+                          <m:mstyle fontsize="8pt">
+                            <m:mrow>
+                              <m:mn>1</m:mn>
+                            </m:mrow>
+                          </m:mstyle>
+                        </m:msub>
+                      </m:mfrac>
+                    </m:mrow>
+                    <m:mfenced open="[" close="]">
+                      <m:mtable>
+                        <m:mtr>
+                          <m:mtd>
+                            <m:mrow>
+                              <m:mn>1</m:mn>
+                              <m:mrow/>
+                            </m:mrow>
+                          </m:mtd>
+                        </m:mtr>
+                        <m:mtr>
+                          <m:mtd>
+                            <m:mrow>
+                              <m:mn>0</m:mn>
+                              <m:mrow/>
+                            </m:mrow>
+                          </m:mtd>
+                        </m:mtr>
+                        <m:mtr>
+                          <m:mtd>
+                            <m:mn>0</m:mn>
+                          </m:mtd>
+                        </m:mtr>
+                      </m:mtable>
+                    </m:mfenced>
+                    <m:mi/>
+                    <m:mi>e</m:mi>
+                    <m:mo stretchy="false">(</m:mo>
+                    <m:mi>t</m:mi>
+                    <m:mo stretchy="false">)</m:mo>
+                  </m:mrow>
+                </m:mrow>
+              </m:mstyle>
+              <m:mrow/>
+            </m:mrow>
+            <m:annotation encoding="StarMath 5.0"> size 12{ left [ matrix {
+ {  { ital "di" rSub {1}  \( t \) }  over  { ital "dt"} }  {} ##
+ {  { ital "di" rSub {2}  \( t \) }  over  { ital "dt"} }  {} ##
+ {  { ital "de" rSub {c}  \( t \) }  over  { ital "dt"} } 
+}  right ]= left [ matrix {
+ {  { - R rSub { size 8{1} } }  over  {L rSub { size 8{1} } } }  {} # 0 {} #  {  { - 1}  over  {L rSub { size 8{1} } } }  {} ##
+0 {} #  {  { - R rSub { size 8{2} } }  over  {L rSub { size 8{2} } } }  {} #  {  {1}  over  {L rSub { size 8{2} } } }  {} ##
+ {  {1}  over  {C} }  {} #  {  { - 1}  over  {C} }  {} # 0{}
+}  right ]` left [ matrix {
+i rSub {1}  \( t \)  {} ##
+i rSub {2}  \( t \)  {} ##
+e rSub {c}  \( t \) 
+}  right ]+ {  {1}  over  {L rSub { size 8{1} } } }  left [ matrix {
+1 {} ##
+0 {} ##
+0
+}  right ]`e \( t \) } {}</m:annotation>
+          </m:semantics>
+        </m:math>
+      </para>
+      <para id="id23270621">(5.7)</para>
+    </section>
+    <section id="id-115518549996">
+      <title>MÔ HÌNH HOÁ CÁC BỘ PHẬN CỦA HỆ THỐNG CƠ.</title>
+      <para id="id23270636">Hầu hết các hệ tự kiểm đều có chứa các bộ phận cơ khí cũng như các bộ phận điện. Trên quan điểm toán học, sự mô tả các bộ phận cơ và điện thì tương đương nhau. Thật vậy, ta có thể chứng minh rằng một bộ phận cơ khí thường là một bản sao của một bộ phận điện tương đương, và ngược lại. Dĩ nhiên, sự tương đương chỉ trên ý nghĩa toán học. Hai hệ thống thì tương đương nhau nếu chúng được diễn tả bằng các phương trình giống nhau.</para>
+      <para id="id23270653">Sự chuyển động của các bộ phận cơ có thể là tịnh tiến, quay hoặc phối hợp cả hai. Các phương trình chỉ ra chuyển động của các hệ cơ thì thường được viết một cách trực tiếp hay gián tiếp từ định luật chuyển động của Newton.</para>
+      <section id="id-827284059366">
+        <title>Chuyển động tịnh tiến.</title>
+        <para id="id23270678">Chuyển động tịnh tiến được định nghĩa như là một chuyển động dời chổ dọc theo một đường thẳng. Các biến được dùng mô tả chuyển động tịnh tiến là gia tốc, vận tốc và độ dời.</para>
+        <para id="id23270694">Định luật Newton chứng tỏ rằng tổng đại số các lực tác động lên một cäú thãø theo một phương đã cho thì bằng tích số của khối lượng của cäú thãø và gia tốc của nó theo cùng phương đó.</para>
+        <para id="id23270729"> lực = Ma(5.8)</para>
+        <para id="id23270748">Trong đó: M là khối lượng và a là gia tốc.</para>
+        <para id="id23270760">Trong chuyển động tịnh tiến, các bộ phận sau đây thường được đưa vào:</para>
+        <list id="id23270774" list-type="bulleted">
+          <item>Khối lượng.</item>
+        </list>
+        <para id="id21609969">Khối lượng được xem như là một đặc trưng của một bộ phận tích trữ động năng trong chuyển động tịnh tiến. Nó tương đương với cuộn cảm của mạch điện. Nếu W là trọng lượng của cäú thãø, thì M được cho bởi:</para>
+        <para id="id21609994"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mstyle fontsize="13pt"><m:mrow><m:mrow><m:mi>M</m:mi><m:mo stretchy="false">=</m:mo><m:mfrac><m:mstyle fontsize="13pt"><m:mrow><m:mi>W</m:mi></m:mrow></m:mstyle><m:mstyle fontsize="13pt"><m:mrow><m:mi>g</m:mi></m:mrow></m:mstyle></m:mfrac></m:mrow></m:mrow></m:mstyle></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ size 13{M= {  { size 13{W}}  over  { size 13{g}} } }} {}</m:annotation></m:semantics></m:math>(5.9)</para>
+        <para id="id21610074">g: Gia tốc trọng trường.</para>
+        <para id="id21610082">Trong hệ thống SI, đơn vị của M là kg, của g là m/s2; của lực là Newton(N).</para>
+        <para id="id21610101">f(t)My(t)</para>
+        <para id="id22545026">Hình H.5_3: Hệ thống lực- khối lượng.</para>
+        <para id="id22545040">HìnhH. 5_3 mô tả vị trí mà ở đó một lực tác động lên một cäú thãø có khối lượng M.</para>
+        <para id="id22545063">Phương trình được viết:</para>
+        <para id="id22545074"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mstyle fontsize="13pt"><m:mrow><m:mrow><m:mi>f</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:mi>M</m:mi></m:mrow><m:mi/><m:mi>a</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:mi>M</m:mi></m:mrow><m:mi/><m:mrow><m:mfrac><m:mstyle fontsize="13pt"><m:mrow><m:mrow><m:msup><m:mi>d</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup><m:mi>y</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mstyle fontsize="12pt"><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msup><m:mtext>dt</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mrow></m:mstyle></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">=</m:mo><m:mi>M</m:mi></m:mrow><m:mi/><m:mfrac><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dv</m:mtext></m:mrow></m:mstyle><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mstyle fontsize="12pt"><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mrow></m:mstyle></m:mfrac></m:mrow></m:mrow></m:mstyle></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ size 13{f \( t \) =M`a \( t \) =M` {  { size 13{d rSup { size 8{2} } y \( t \) }}  over  { size 12{ ital "dt" rSup { size 8{2} } } } } =M` {  { size 12{ ital "dv" \( t \) } }  over  { size 12{ ital "dt"} } } }} {}</m:annotation></m:semantics></m:math>(5.10)</para>
+        <para id="id21039312">Trong đó y(t) chỉ độ dời; v(t): vận tốc; a(t): gia tốc.</para>
+        <para id="id21039321">Tất cả được tham chiếu theo hướng của lực áp dụng.</para>
+        <list id="id21039331" list-type="bulleted">
+          <item>Lò xo tuyến tính.</item>
+        </list>
+        <para id="id21039348">Một cách tổng quát, là xo được xem như là một bộ phận tích trữ thế năng. Nó tương đương với tụ điện trong các mạch điện.</para>
+        <para id="id21039360">Trong thực tế, lò xo tuyến tính có thể là một lò xo thực sự, hoặc một dây courroir. Dù tất cả các lò xo đều phi tuyến ở vài vùng hoạt động. Nhưng, nếu sự biến dạng của lò xo nhỏ, trạng thái của nó có thể được xấp xỉ hoá (approximated) bằng một hệ thức tuyến tính:</para>
+        <para id="id21039378">f(t)= Ky(t)(5.11)</para>
+        <para id="id21039391">Với K là hằng số lò xo, hoặc hằng số đàn hồi (Stifness)</para>
+        <para id="id21039401">Đơn vị của K: N/m</para>
+        <para id="id21039408">Phương trình (5.11) cho thấy lực tác động lên lò xo thì tỷ lệ trực tiếp với độ dời (độ biến dạng) của lò xo. Mô hình biểu diển một bộ phận lò xo tuyến tính vẽ ở hình H.5_4.</para>
+        <para id="id21039425">y(t)f(t)</para>
+        <para id="id21041690"/>
+        <para id="id21041694">H.5_4: Hệ thống lực-lò xo.</para>
+        <para id="id21041702">Nếu lò xo có mang trước một sức căng T thì (5.12) sẽ được cải biến thành:</para>
+        <para id="id21041713">f(t)-T= Ky(t)(5.12)</para>
+      </section>
+      <section id="id-282541247764">
+        <title>Lực ma sát trong chuyển động tịnh tiến.</title>
+        <para id="id21041734">Mỗi khi có sự chuyển động hoặc khuynh hướng chuyển động giữa hai vật, lực ma sát sẽ xuất hiện. Lực ma sát gặp trong các hệ vật lý thường là phi tuyến. Những đặc tính của các loại lực ma sát giữa hai bề mặt tiếp xúc thường phụ thuộc vào các hệ số như là sự phối hợp bề mặt, áp suất giữa các bề mặt, vận tốc tương đối của chúng và những thứ khác, làm cho việc mô tả toán học một cách chính xác lực ma sát thì rất khó. Tuy nhiên, với chủ đích thực hành, lực ma sát có thể chia thành ba loại như sau: Ma sát trượt, ma sát nghĩ và ma sát coulomb.</para>
+        <list id="id21041766" list-type="bulleted">
+          <item>Ma sát trượt ( ma sát nhớt-Vicous Friction)</item>
+        </list>
+        <para id="id21041781">Ma sát trượt biểu diễn một lực cản có liên hệ tuyến tính giữa lực tác dụng và vận tốc. Lực ma sát trượt thường được mô hình hoá bằng một dashpot (ống đệm), có ký hiệu như hình H.5_5.</para>
+        <figure id="id21041803">
+          <media id="id1165049577065" alt=""><image src="../../media/graphics3-4d5d.png" mime-type="image/png" height="122" width="202"/></media>
+        </figure>
+        <para id="id21041827">Hình H.5_5: Dashpot của ma sát trượt.</para>
+        <para id="id21041837">Phương trình biểu diễn lực ma sát trượt:</para>
+        <para id="id22057736"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mstyle fontsize="13pt"><m:mrow><m:mrow><m:mi>f</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:mi>B</m:mi></m:mrow><m:mfrac><m:mstyle fontsize="13pt"><m:mrow><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dy</m:mtext></m:mrow></m:mstyle><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mstyle fontsize="13pt"><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mrow></m:mstyle></m:mfrac></m:mrow></m:mrow></m:mstyle></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ size 13{f \( t \) =B {  { size 13{ ital "dy" \( t \) }}  over  { size 13{ ital "dt"}} } }} {}</m:annotation></m:semantics></m:math> (5.13)</para>
+        <para id="id22057854">Trong đó: B là hệ số ma sát trượt. (N/m/sec)</para>
+        <para id="id22057863">Hình H.5_5a, trình bày sự tương quan giữa lực ma sát trượt và vận tốc.</para>
+        <list id="id22057874" list-type="bulleted">
+          <item>Ma sát nghĩ (Static Friction).</item>
+        </list>
+        <para id="id22057894">Ma sát nghĩ biểu diễn một lực cản, có khuynh hướng ngăn cản chuyển động lúc vừa bắt đầu (khi chuyển động bắt đầu ma sát nghĩ có trị cực đại bằng ma sát trượt). Ma sát nghĩ được biểu diễn bởi biễu thức:</para>
+        <para id="id22057911">f(t) = (Fs)y’=0 (5.14)</para>
+        <para id="id22057942">Trong đó: (Fs)y’ = 0 được định nghĩa như là lực ma sát nghĩ tồn tại chỉ khi vật đứng yên nhưng đang có khuynh hướng chuyển động. Dấu của lực tùy thuộc và chiều chuyển động hoặc chiều ban đầu của vận tốc. Sự tương quan giữa lực và vận tốc vẽ ở hình H.5_5b. Nhớ là một khi chuyển động bắt đầu, lực ma sát nghĩ biến mất, và loại lực ma sát khác xuất hiện.</para>
+        <list id="id22326158" list-type="bulleted">
+          <item>Ma sát coulomb.</item>
+        </list>
+        <para id="id22326167">Lực ma sát coulomb là một lực cản, có độ lớn không đổi đối với sự biến thiên của vận tốc. Dấu của lực thì thay đổi khi vận tốc đổi chiều. Phương trình toán học của lực ma sát coulomb:</para>
+        <para id="id22326183"><m:math><m:semantics><m:mrow/><m:annotation encoding="StarMath 5.0">{}</m:annotation></m:semantics></m:math><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mstyle fontsize="13pt"><m:mrow><m:mrow><m:mi>f</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:mstyle fontstyle="italic"><m:mrow><m:mtext>Fc</m:mtext></m:mrow></m:mstyle></m:mrow><m:mfenced open="" close=""><m:mrow><m:mfrac><m:mstyle fontsize="13pt"><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dy</m:mtext></m:mrow></m:mstyle></m:mrow></m:mstyle><m:mstyle fontsize="13pt"><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">/</m:mo><m:mrow><m:mo stretchy="false">∣</m:mo><m:mfrac><m:mstyle fontsize="13pt"><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dy</m:mtext></m:mrow></m:mstyle></m:mrow></m:mstyle><m:mstyle fontsize="13pt"><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">∣</m:mo></m:mrow></m:mrow></m:mfenced></m:mrow></m:mrow></m:mstyle></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ size 13{f \( t \) = ital "Fc" left ( { {  { size 13{ ital "dy"}}  over  { size 13{ ital "dt"}} } } slash { lline  {  { size 13{ ital "dy"}}  over  { size 13{ ital "dt"}} }  rline }  right )}} {}</m:annotation></m:semantics></m:math>(5.15)</para>
+        <para id="id21016032">Trong đó Fc là hệ số ma sát coulomb. Sự tương quan giữa lực và vận tốc vẽ ở hình H.5_5c.</para>
+        <figure id="id21016046">
+          <media id="id1165056233893" alt=""><image src="../../media/graphics4-a83a.png" mime-type="image/png" height="190" width="615"/></media>
+        </figure>
+        <para id="id21016070">H.5_5a. H.5_5b. H.5_5c.</para>
+      </section>
+      <section id="id-646283973208">
+        <title>Chuyển động quay.</title>
+        <para id="id21016095">Chuyển động quay của một vật có thể được định nghĩa như là chuyển động của vật quanh một trục cố định. Các biến số thường dùng để mô tả chuyển động quay là moment; gia tốc góc ; vận tốc góc ; và góc dời .</para>
+        <para id="id21016138">Các bộ phạân sau đây thường được đưa vào để mô hình hoá chuyển động quay.</para>
+        <list id="id21016148" list-type="enumerated">
+          <item>Quán tính (Inertia).</item>
+        </list>
+        <para id="id21016165">Quán tính J, được xem như là chỉ thị tính chất của một bộ phận tích trữ động năng trong chuyển động quay. Quán tính của vật phụ thuộc vào sự tổng hợp hình học quanh trục quay và khối lượng của nó. J còn gọi là moment quán tính.</para>
+        <para id="id21016182">Thí dụ: quán tính của một dĩa tròn hoặc một trục tròn quay quanh trục hình học là:</para>
+        <para id="id21016204"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mstyle fontsize="13pt"><m:mrow><m:mrow><m:mrow><m:mi>J</m:mi><m:mo stretchy="false">=</m:mo><m:mfrac><m:mstyle fontsize="13pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle><m:mstyle fontsize="13pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:mfrac></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msup><m:mtext>Mr</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mrow></m:mstyle></m:mrow></m:mrow></m:mstyle></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ size 13{J= {  { size 13{1}}  over  { size 13{2}} }  ital "Mr" rSup { size 8{2} } }} {}</m:annotation></m:semantics></m:math>  (5.16)</para>
+        <para id="id21656470">Trong đó, M là khối lượng của dĩa hoặc của trục và r là bán kính của chúng.</para>
+        <para id="id21656480">Khi một moment được áp dụng vào một cố thể với quán tính J, như hình H.5_7, thì phương trình moment được viết:</para>
+        <para id="id21656499">T(x)= 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>T</m:mi><m:mo stretchy="false">(</m:mo><m:mi>x</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:mi fontstyle="italic">Jα</m:mi></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo><m:mi>J</m:mi><m:mrow><m:mfrac><m:mrow><m:mi fontstyle="italic">dω</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">=</m:mo><m:mi>J</m:mi></m:mrow><m:mfrac><m:mrow><m:msup><m:mi>d</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup><m:mi>θ</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msup><m:mtext>dt</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mrow></m:mstyle></m:mfrac></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{T \( x \) =Jα \( t \) J {  {dω \( t \) }  over  { ital "dt"} } =J {  {d rSup { size 8{2} } θ \( t \) }  over  { ital "dt" rSup { size 8{2} } } } } {}</m:annotation></m:semantics></m:math> (5.17)</para>
+        <para id="id21037226">J : Kg.m2 ; T :N.m ;  :radian.</para>
+        <figure id="id21037261">
+          <media id="id1165049372697" alt=""><image src="../../media/graphics5-b610.png" mime-type="image/png" height="70" width="216"/></media>
+        </figure>
+        <para id="id21037285">H.5_7: Hệ thống moment _quán tính.</para>
+        <para id="id21037294">b. Lò xo xoắn (torsional spring).</para>
+        <para id="id21037313">Khi áp dụng một moment lên một thanh hay một trục quay có khối lượng không đáng kể, trục quay một góc . Nếu k là hằng số xoắn, moment trên một đơn vị góc dời, thì hệ thống có thể biểu diễn bằng hình H.5_8 và phương trình:</para>
+        <para id="id21037339">T(t)=K(t) (5.18)</para>
+        <figure id="id21037366">
+          <media id="id1165056017634" alt=""><image src="../../media/graphics6-4b70.png" mime-type="image/png" height="152" width="227"/></media>
+        </figure>
+        <para id="id21037389">H.5_8: Hệ thống moment- lò xo xoắn.</para>
+        <para id="id21037398">Nếu lò xo xoắn có mang trước một moment Tp, thì phương trình trên được cải tiến.</para>
+        <para id="id23135932">T(t) –TP =K(t) (5.19)</para>
+        <para id="id23135953">c. Ma sát trong chuyển động quay.</para>
+        <para id="id23135972">Cả ba loại ma sát đã mô tả trong chuyển động tịnh tiến đều có thể áp dụng cho chuyển động quay. Do đó các phương trình (5.13), (5.14) và (5.15) có thể viết lại trong trường hợp này như sau:</para>
+        <para id="id23135988"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>T</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:mi>B</m:mi></m:mrow><m:mfrac><m:mi fontstyle="italic">dθ</m:mi><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{T \( t \) =B {  {dθ}  over  { ital "dt"} } } {}</m:annotation></m:semantics></m:math>  (5.20)</para>
+        <para id="id23136084">T(t)=  (Fs)’=0   (5.21)</para>
+        <para id="id23136124"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>T</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:msub><m:mi>F</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>c</m:mi></m:mrow></m:mstyle></m:msub></m:mrow><m:mfenced open="" close=""/></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{T \( t \) =F rSub { size 8{c} }  left ( { {  {dθ}  over  { ital "dt"} } } wideslash { lline  {  {dθ}  over  { ital "dt"} }  rline }  right )} {}</m:annotation></m:semantics></m:math> (5.22)</para>
+        <para id="id23271049">Trong đó, B :Hệ số ma sát nhớt, moment trên một đơn vị vận tốc góc.</para>
+        <para id="id23271062">(Fs)=0 là ma sát nghỉ.</para>
+        <para id="id23271083">Fc : là ma sát coulomb.</para>
+      </section>
+      <section id="id-708558096224">
+        <title>Sự tương quan giữa chuyển động tịnh tiến và chuyển động quay.</title>
+        <para id="id23271098">Trong vấn đề điều khiển chuyển động, thường khi ta cần đổi một chuyển động quay thành một chuyển động tịnh tiến. Thí dụ,</para>
+        <list id="id23271112" list-type="bulleted">
+          <item>Hình H.5_9 : bộ điều khiển đổi một chuyển động quay thành một chuyển động thẳng nhờ motor và bộ screw (Vis Faraday)</item>
+          <item>Hình H.5_10: cũng có chức năng tương tự, nhưng sự chuyển đổi thực hiện nhờ thanh răng (rack) và pinion(nhông)./</item>
+          <item>Hình H.5_11: Một bộ điều khiển chuyển động thông dụng khác, dùng pulley (ròng rọc) và dây couroir .</item>
+        </list>
+        <para id="id23271156">
+          <media id="id1165048169668" alt=""><image src="../../media/graphics7-2358.png" mime-type="image/png" height="92" width="366"/></media>
+          <media id="id1165048164980" alt=""><image src="../../media/graphics8-fe05.png" mime-type="image/png" height="184" width="330"/></media>
+        </para>
+        <para id="id23271213">H.5_10</para>
+        <figure id="id23240982">
+          <media id="id1165047967683" alt=""><image src="../../media/graphics9-c335.png" mime-type="image/png" height="119" width="379"/></media>
+        </figure>
+        <para id="id23241006">Các hệ thống trên điều có thể được biểu diễn bằng một hệ thống đơn giản với một quán tính tương đương mắc trực tiếp vào một motor thúc.</para>
+        <para id="id23241022">Thí dụ, khối lượng ở hình H.5_11, có thể xem như là một khối điểm (point mass) chuyển động quanh ròng rọc, bán kính r. Bỏ qua quán tính của ròng rọc, thì quán tính tương đương do motor là:
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow><m:mrow><m:mi>J</m:mi><m:mo stretchy="false">=</m:mo><m:mstyle fontstyle="italic"><m:mrow><m:msup><m:mtext>Mr</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mrow></m:mstyle></m:mrow><m:mo stretchy="false">=</m:mo><m:mfrac><m:mi>w</m:mi><m:mi>g</m:mi></m:mfrac></m:mrow><m:msup><m:mi>r</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{J= ital "Mr" rSup { size 8{2} } = {  {w}  over  {g} } r rSup { size 8{2} } } {}</m:annotation></m:semantics></m:math> (5.23)</para>
+        <list id="id23241133" list-type="bulleted">
+          <item>Nếu bán kính của pinion ở hình H.5_10 là r, quán tính tương đương do motor cho bởi phương trình (5.23).</item>
+        </list>
+        <para id="id23241149">Bây giờ ta xem hệ thống ở hình H.5_9. Gọi L là khoảng di chuyển thẳng của khối lượng khi khoảng cách space convis xoay một vòng. Về nguyên tắc, hai hệ thống ở hình H.5_10 và H.5_11 thì tương đương. Ơû hình H.5_10 khoảng di chuyển thẳng của khối lượng trên mỗi vòng quay của pinion làL=2r.</para>
+        <para id="id23241180">Do đó, dùng phương trình (5.23) để tính quán tính tương đương của hệ ở hình H.5_9.</para>
+        <para id="id23241190"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow><m:mi>J</m:mi><m:mo stretchy="false">=</m:mo><m:mfrac><m:mi>w</m:mi><m:mi>g</m:mi></m:mfrac></m:mrow><m:msup><m:mfenced open="" close=""><m:mfrac><m:mi>L</m:mi><m:mn>2π</m:mn></m:mfrac></m:mfenced><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{J= {  {w}  over  {g} }  left ( {  {L}  over  {2π} }  right ) rSup { size 8{2} } } {}</m:annotation></m:semantics></m:math> (5.24)</para>
+      </section>
+      <section id="id-97217260637">
+        <title>Cơ năng và công suất.</title>
+        <para id="id21015495">Năng lượng và công suất giữ vai trò quan trọng trong việc thiết kế các hệ thống điện cơ.</para>
+        <para id="id21015506">Năng lượng được tích trữ dưới dạng động năng và thế năng âiãưu khiãøn tính “động” của hệ thống. Tuy nhiên, năng lượng tiêu tán thường ở dạng nhiệt, cũng cần được kiểm soát.</para>
+        <para id="id21015531">* Khối lượng hoặc quán tính của một vật chỉ khả năng tích trữ động năng. Động năng của một khối lượng di chuyển với vận tốc v là:</para>
+        <para id="id21015544"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow><m:msub><m:mi>W</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>k</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">=</m:mo><m:mfrac><m:mn>1</m:mn><m:mn>2</m:mn></m:mfrac></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msup><m:mtext>Mv</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mrow></m:mstyle></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{W rSub { size 8{k} } = {  {1}  over  {2} }  ital "Mv" rSup { size 8{2} } } {}</m:annotation></m:semantics></m:math> (5.25)</para>
+        <para id="id21015635">Wk: Joule, hoặc Nm ; M: N/m/sec2 ;v: m/s.</para>
+        <para id="id21579718">đối với một hệ thống quay, động năng được viết:</para>
+        <para id="id21579726"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow><m:msub><m:mi>W</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>k</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">=</m:mo><m:mfrac><m:mn>1</m:mn><m:mn>2</m:mn></m:mfrac></m:mrow><m:msup><m:mi fontstyle="italic">Jω</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{W rSub { size 8{k} } = {  {1}  over  {2} } Jω rSup { size 8{2} } } {}</m:annotation></m:semantics></m:math> (5.26)</para>
+        <para id="id21579821">J: moment quán tính Kg.m2</para>
+        <para id="id21579834">: vận tốc góc rad/s.</para>
+        <para id="id21579846">* 
+<m:math><m:semantics><m:mrow/><m:annotation encoding="StarMath 5.0">{}</m:annotation></m:semantics></m:math>lò xo tuyến tính bị biến dạng một chiều dài y , sẽ tích trữ một thế năng: 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow><m:msub><m:mi>W</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>k</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">=</m:mo><m:mfrac><m:mn>1</m:mn><m:mn>2</m:mn></m:mfrac></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msup><m:mtext>Ky</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mrow></m:mstyle></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{W rSub { size 8{k} } = {  {1}  over  {2} }  ital "Ky" rSup { size 8{2} } } {}</m:annotation></m:semantics></m:math> (5.27)</para>
+        <para id="id21753507">* lò xo xoắn, tích trữ thế năng: </para>
+        <para id="id21753516"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow><m:msub><m:mi>W</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>p</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">=</m:mo><m:mfrac><m:mn>1</m:mn><m:mn>2</m:mn></m:mfrac></m:mrow><m:msup><m:mi fontstyle="italic">Kθ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{W rSub { size 8{p} } = {  {1}  over  {2} } Kθ rSup { size 8{2} } } {}</m:annotation></m:semantics></m:math> (5.28)</para>
+        <para id="id21753603"> : Góc xoắn.</para>
+        <para id="id21753615">Đối với một bộ phận ma sát, năng lượng biểu diễn một sự mất hoặc tiêu hao bởi hệ thống khi đối kháng với lực ma sát. Công suất tiêu tán trong bộ phận có ma sát là tích số của lực và vận tốc.</para>
+        <para id="id21753630">P=f.v (5.29)</para>
+        <para id="id21753642">Vì f= B.v, với B là hệ số ma sát, nên:</para>
+        <para id="id21753651">P=B.v2 (5.30)</para>
+        <para id="id21753674">( P: N.m/s2 hoặc watt (w)).</para>
+        <para id="id21753693">Vậy năng lượng tiêu tán trong bộ phận ma sát la:</para>
+        <para id="id21044706"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow><m:msub><m:mi>W</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>d</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">=</m:mo><m:mi>B</m:mi></m:mrow><m:mrow><m:mo stretchy="false">∫</m:mo><m:mrow><m:msup><m:mi>v</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mrow></m:mrow></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{W rSub { size 8{d} } =B Int {v rSup { size 8{2} }  ital "dt"} } {}</m:annotation></m:semantics></m:math> (5.31)</para>
+      </section>
+      <section id="id-0635477072163">
+        <title>Bánh răng - đòn bẩy – dây courroir. </title>
+        <para id="id21044820">Bánh răng, đòn bẩy hoặc dây courroir và pu-li là những cơ phận truyền năng lượng từ một bộ phận này đến một bộ phận khác của hệ thống đễ thay đổi lực, moment, vận tốc và độ dời. Chúng cũng được xem như là những bộ phận phối hợp nhằm đạt đến sự truyền công suất tối đa.</para>
+        <para id="id21044840">Hai bánh răng nối nhau như hình H.5_12. Quán tính và ma sát của chúng được xem như không đáng kể trong trường hợp lý tưởng.</para>
+        <figure id="id21044856">
+          <media id="id1165047976125" alt=""><image src="../../media/graphics10-2113.png" mime-type="image/png" height="192" width="147"/></media>
+        </figure>
+        <para id="id21044879">Những hệ thức giữa moment T1 và T2, góc dời 1 và2 , số răng N1 và N2 của bộ bánh răng được dẫn xuất từ các sự kiện sau đây:</para>
+        <para id="id21545299">1_ Số răng trên bề mặt các bánh răng tỉ lệ với bán kính r1và r2 của bánh răng:</para>
+        <para id="id21545330">r1N2=r2N1 (5.32)</para>
+        <para id="id21545374">2_ Khoảng dịch dọc theo bề mặt của mỗi bánh răng thì bằng nhau.</para>
+        <para id="id21545384">1r1=2r2 (5.33)</para>
+        <para id="id21545438">3_ Giả sử không có sự mất năng lượng, công tạo bởi bánh răng này bằng công của bánh răng kia.</para>
+        <para id="id21545449">T11=T22 (5.34)</para>
+        <para id="id21545494">Nếu 1 và 2 là vận tốc góc của chúng thì:</para>
+        <para id="id21679533"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow><m:mrow><m:mrow><m:mfrac><m:msub><m:mi>T</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:msub><m:mi>T</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mfrac><m:mo stretchy="false">=</m:mo><m:mfrac><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mfrac></m:mrow><m:mo stretchy="false">=</m:mo><m:mfrac><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mfrac></m:mrow><m:mo stretchy="false">=</m:mo><m:mfrac><m:msub><m:mi>ω</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:msub><m:mi>ω</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mfrac></m:mrow><m:mo stretchy="false">=</m:mo><m:mfrac><m:msub><m:mi>r</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:msub><m:mi>r</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mfrac></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  {T rSub { size 8{1} } }  over  {T rSub { size 8{2} } } } = {  {θ rSub { size 8{2} } }  over  {θ rSub { size 8{1} } } } = {  {N rSub { size 8{1} } }  over  {N rSub { size 8{2} } } } = {  {ω rSub { size 8{2} } }  over  {ω rSub { size 8{1} } } } = {  {r rSub { size 8{1} } }  over  {r rSub { size 8{2} } } } } {}</m:annotation></m:semantics></m:math> (5.35)</para>
+        <para id="id21679720">Thực tế, các bánh răng đều có quán tính và lực ma sát thỉåìng không bỏ qua.</para>
+        <figure id="id21679742">
+          <media id="id1165056095648" alt=""><image src="../../media/graphics11-81d1.png" mime-type="image/png" height="182" width="163"/></media>
+        </figure>
+        <para id="id22078479">T= moment áp dụng</para>
+        <para id="id22078490">1, 2: góc dời.</para>
+        <para id="id22078519">T1, T2: moment được truyền đến bánh răng</para>
+        <para id="id22078544">J1, J2; quán tính của bánh răng</para>
+        <para id="id22078569">N1, N2: số răng</para>
+        <para id="id22078594">Fc1,Fc2: Hệ số ma sát coulomb.</para>
+        <para id="id22078618">B1, B2: Hệ số ma sát nhớt (trượt).</para>
+        <para id="id22078644">Phương trình moment của bánh răng 2 được viết:</para>
+        <para id="id22078655"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:msub><m:mi>T</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:msub><m:mi>J</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow><m:mrow><m:mfrac><m:mrow><m:msup><m:mi>d</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msup><m:mtext>dt</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">+</m:mo><m:msub><m:mi>B</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow><m:mrow><m:mfrac><m:mrow><m:msub><m:mi fontstyle="italic">dθ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">+</m:mo><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext>Fc</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle></m:mrow><m:mfrac><m:mover><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:mstyle fontsize="8pt"><m:mrow><m:mtext>.</m:mtext></m:mrow></m:mstyle></m:mover><m:mrow><m:mo stretchy="false">∣</m:mo><m:mover><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mstyle fontsize="8pt"><m:mrow><m:mtext>.</m:mtext></m:mrow></m:mstyle></m:mover><m:mo stretchy="false">∣</m:mo></m:mrow></m:mfrac></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{T rSub { size 8{2} }  \( t \) =J rSub { size 8{2} }  {  {d rSup { size 8{2} } θ rSub { size 8{2} }  \( t \) }  over  { ital "dt" rSup { size 8{2} } } } +B rSub { size 8{2} }  {  {dθ rSub { size 8{2} }  \( t \) }  over  { ital "dt"} } + ital "Fc" rSub { size 8{2} }  {  { {θ rSub { size 8{2} } }  cSup { size 8{ "." } } }  over  { lline  {θ rSub { size 8{1} } }  cSup { size 8{ "." } }  rline } } } {}</m:annotation></m:semantics></m:math> (5.36)</para>
+        <para id="id21687000">Phương trình moment của bánh răng 1 là:</para>
+        <para id="id21687012"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:msub><m:mi>T</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:msub><m:mi>J</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow><m:mrow><m:mfrac><m:mrow><m:msup><m:mi>d</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msup><m:mtext>dt</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">+</m:mo><m:msub><m:mi>B</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow><m:mrow><m:mfrac><m:mrow><m:msub><m:mi fontstyle="italic">dθ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">+</m:mo><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext>Fc</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle></m:mrow><m:mrow><m:mfrac><m:mover><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mstyle fontsize="8pt"><m:mrow><m:mtext>.</m:mtext></m:mrow></m:mstyle></m:mover><m:mrow><m:mo stretchy="false">∣</m:mo><m:mover><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mstyle fontsize="8pt"><m:mrow><m:mtext>.</m:mtext></m:mrow></m:mstyle></m:mover><m:mo stretchy="false">∣</m:mo></m:mrow></m:mfrac><m:mo stretchy="false">+</m:mo><m:msub><m:mi>T</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo><m:mtext>.</m:mtext></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{T rSub { size 8{2} }  \( t \) =J rSub { size 8{1} }  {  {d rSup { size 8{2} } θ rSub { size 8{1} }  \( t \) }  over  { ital "dt" rSup { size 8{2} } } } +B rSub { size 8{1} }  {  {dθ rSub { size 8{1} }  \( t \) }  over  { ital "dt"} } + ital "Fc" rSub { size 8{1} }  {  { {θ rSub { size 8{1} } }  cSup { size 8{ "." } } }  over  { lline  {θ rSub { size 8{1} } }  cSup { size 8{ "." } }  rline } } +T rSub { size 8{1} }  \( t \)  "." } {}</m:annotation></m:semantics></m:math> (5.37)</para>
+        <para id="id21747088">Dùng (5.35), phương trình (5.36) đổi thành:</para>
+        <para id="id21747097"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:msub><m:mi>T</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:mfrac><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mfrac></m:mrow><m:msub><m:mi>T</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:msup><m:mfenced open="" close=""><m:mfrac><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mfrac></m:mfenced><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mrow><m:msub><m:mi>J</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:mrow><m:mfrac><m:mrow><m:msup><m:mi>d</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msup><m:mtext>dt</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">+</m:mo><m:msup><m:mfenced open="" close=""><m:mfrac><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mfrac></m:mfenced><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mrow><m:msub><m:mi>B</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:mrow><m:mfrac><m:mrow><m:msub><m:mi fontstyle="italic">dθ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">+</m:mo><m:mfrac><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mfrac></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext>Fc</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mfrac><m:mover><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mstyle fontsize="8pt"><m:mrow><m:mtext>.</m:mtext></m:mrow></m:mstyle></m:mover><m:mrow><m:mo stretchy="false">∣</m:mo><m:mover><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mstyle fontsize="8pt"><m:mrow><m:mtext>.</m:mtext></m:mrow></m:mstyle></m:mover><m:mo stretchy="false">∣</m:mo></m:mrow></m:mfrac></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{T rSub { size 8{1} }  \( t \) = {  {N rSub { size 8{1} } }  over  {N rSub { size 8{2} } } } T rSub { size 8{2} }  \( t \) = left ( {  {N rSub { size 8{1} } }  over  {N rSub { size 8{2} } } }  right ) rSup { size 8{2} } J rSub { size 8{2} }  {  {d rSup { size 8{2} } θ rSub { size 8{1} }  \( t \) }  over  { ital "dt" rSup { size 8{2} } } } + left ( {  {N rSub { size 8{1} } }  over  {N rSub { size 8{2} } } }  right ) rSup { size 8{2} } B rSub { size 8{2} }  {  {dθ rSub { size 8{1} }  \( t \) }  over  { ital "dt"} } + {  {N rSub { size 8{1} } }  over  {N rSub { size 8{2} } } }  ital "Fc" rSub { size 8{2} }  {  { {θ rSub { size 8{1} } }  cSup { size 8{ "." } } }  over  { lline  {θ rSub { size 8{1} } }  cSup { size 8{ "." } }  rline } } } {}</m:annotation></m:semantics></m:math> (5.38)</para>
+        <para id="id22081401">Phương trình (5.38) chứng tỏ rằng có thể phản xạ quán tính, ma sát,momen,vận tốc và độ dời từ phía naỳ sang phía kia của bộ bánh răng.</para>
+        <para id="id22081418">Như vậy, các đại lượng sau đây sẽ có được khi phản xạ từ bánh răng 2 sang bánh răng 1 :</para>
+        <para id="id22081435">Quán tính : 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:msup><m:mfenced open="" close=""><m:mfrac><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mfrac></m:mfenced><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup><m:msub><m:mi>J</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ left ( {  {N rSub { size 8{1} } }  over  {N rSub { size 8{2} } } }  right ) rSup { size 8{2} } J rSub { size 8{2} } } {}</m:annotation></m:semantics></m:math></para>
+        <para id="id21686077">Hệ số ma sát nhớt : 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:msup><m:mfenced open="" close=""><m:mfrac><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mfrac></m:mfenced><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup><m:msub><m:mi>B</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ left ( {  {N rSub { size 8{1} } }  over  {N rSub { size 8{2} } } }  right ) rSup { size 8{2} } B rSub { size 8{2} } } {}</m:annotation></m:semantics></m:math></para>
+        <para id="id21686175"> Momen : 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mfrac><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mfrac><m:msub><m:mi>T</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  {N rSub { size 8{1} } }  over  {N rSub { size 8{2} } } } T rSub { size 8{2} } } {}</m:annotation></m:semantics></m:math></para>
+        <para id="id21010778"> Góc dời : 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mfrac><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mfrac><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  {N rSub { size 8{2} } }  over  {N rSub { size 8{1} } } } θ rSub { size 8{2} } } {}</m:annotation></m:semantics></m:math></para>
+        <para id="id21010869"> Vận tốc góc : 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mfrac><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mfrac><m:msub><m:mi>ω</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  {N rSub { size 8{2} } }  over  {N rSub { size 8{1} } } } ω rSub { size 8{2} } } {}</m:annotation></m:semantics></m:math></para>
+        <para id="id21010962"> Momen ma sát coulomb : 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mfrac><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mfrac><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext>Fc</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mfrac><m:msub><m:mi>ω</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:mrow><m:mo stretchy="false">∣</m:mo><m:msub><m:mi>ω</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">∣</m:mo></m:mrow></m:mfrac></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  {N rSub { size 8{1} } }  over  {N rSub { size 8{2} } } }  ital "Fc" rSub { size 8{2} }  {  {ω rSub { size 8{2} } }  over  { lline ω rSub { size 8{2} }  rline } } } {}</m:annotation></m:semantics></m:math></para>
+        <para id="id23135421">Nếu có sự hiện diện của lò xo xoắn, hằng số lò xo cũng được nhán bởi 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:msup><m:mfenced open="" close=""/><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ left ( {N rSub { size 8{1} } } wideslash {N rSub { size 8{2} } }  right ) rSup { size 8{2} } } {}</m:annotation></m:semantics></m:math>, khi phản xạ từ bánh răng 2 sang bánh răng 1.</para>
+        <para id="id23135506">Bây giờ, thay (5.38) vào (5.37) :</para>
+        <para id="id23135518">T(t)=
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:msub><m:mi>J</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mrow><m:mn>1</m:mn><m:mi>e</m:mi></m:mrow></m:mrow></m:mstyle></m:msub><m:mfrac><m:mrow><m:msup><m:mi>d</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mfenced open="" close=""><m:mi>t</m:mi></m:mfenced></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msup><m:mtext>dt</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mrow></m:mstyle></m:mfrac></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{J rSub { size 8{1e} }  {  {d rSup { size 8{2} } θ rSub { size 8{1} }  left (t right )}  over  { ital "dt" rSup { size 8{2} } } } } {}</m:annotation></m:semantics></m:math> + 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:msub><m:mi>B</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mrow><m:mn>1</m:mn><m:mi>e</m:mi></m:mrow></m:mrow></m:mstyle></m:msub><m:mfrac><m:mrow><m:msub><m:mi fontstyle="italic">dθ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mfenced open="" close=""><m:mi>t</m:mi></m:mfenced></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{B rSub { size 8{1e} }  {  {dθ rSub { size 8{1} }  left (t right )}  over  { ital "dt"} } } {}</m:annotation></m:semantics></m:math> + 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:msub><m:mi>T</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>F</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{T rSub { size 8{F} } } {}</m:annotation></m:semantics></m:math> (5.39)</para>
+        <para id="id21014944">Trong đó :</para>
+        <para id="id21014952"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:msub><m:mi>J</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mrow><m:mn>1</m:mn><m:mi>e</m:mi></m:mrow></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{J rSub { size 8{1e} } } {}</m:annotation></m:semantics></m:math> = 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:msub><m:mi>J</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{J rSub { size 8{1} } } {}</m:annotation></m:semantics></m:math> + 
+<m:math><m:semantics><m:mrow/><m:annotation encoding="StarMath 5.0">{}</m:annotation></m:semantics></m:math><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:msup><m:mfenced open="" close=""><m:mfrac><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mfrac></m:mfenced><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup><m:msub><m:mi>J</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ left ( {  {N rSub { size 8{1} } }  over  {N rSub { size 8{2} } } }  right ) rSup { size 8{2} } J rSub { size 8{2} } } {}</m:annotation></m:semantics></m:math>(5.40)</para>
+        <para id="id21786774"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:msub><m:mi>B</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mrow><m:mn>1</m:mn><m:mi>e</m:mi></m:mrow></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{B rSub { size 8{1e} } } {}</m:annotation></m:semantics></m:math> = 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:msub><m:mi>B</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{B rSub { size 8{1} } } {}</m:annotation></m:semantics></m:math> + 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:msup><m:mfenced open="" close=""><m:mfrac><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mfrac></m:mfenced><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup><m:msub><m:mi>B</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ left ( {  {N rSub { size 8{1} } }  over  {N rSub { size 8{2} } } }  right ) rSup { size 8{2} } B rSub { size 8{2} } } {}</m:annotation></m:semantics></m:math>(5.41)</para>
+        <para id="id22334612"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:msub><m:mi>T</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>F</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{T rSub { size 8{F} } } {}</m:annotation></m:semantics></m:math> = 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext>Fc</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mfrac><m:mover><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mstyle fontsize="8pt"><m:mrow><m:mtext>.</m:mtext></m:mrow></m:mstyle></m:mover><m:mrow><m:mo stretchy="false">∣</m:mo><m:msub><m:mover><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mtext>.</m:mtext></m:mrow></m:mstyle></m:mover><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">∣</m:mo></m:mrow></m:mfrac></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ ital "Fc" rSub { size 8{1} }  {  { {θ rSub { size 8{1} } }  cSup { size 8{ "." } } }  over  { lline  {θ}  cSup { size 8{ "." } }  rSub { size 8{1} }  rline } } } {}</m:annotation></m:semantics></m:math> + 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mfrac><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:msub><m:mi>N</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mfrac><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext>Fc</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mfrac><m:mover><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:mstyle fontsize="8pt"><m:mrow><m:mtext>.</m:mtext></m:mrow></m:mstyle></m:mover><m:mrow><m:mo stretchy="false">∣</m:mo><m:msub><m:mover><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mtext>.</m:mtext></m:mrow></m:mstyle></m:mover><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">∣</m:mo></m:mrow></m:mfrac></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  {N rSub { size 8{1} } }  over  {N rSub { size 8{2} } } }  ital "Fc" rSub { size 8{2} }  {  { {θ rSub { size 8{2} } }  cSup { size 8{ "." } } }  over  { lline  {θ}  cSup { size 8{ "." } }  rSub { size 8{2} }  rline } } } {}</m:annotation></m:semantics></m:math>(5.42)</para>
+        <para id="id21578805">Dây courroir và dáy chain được dùng cùng mục đích như bộ bánh răng. Nhưng nó cho phép chuyển năng lượng với khoảng cách xa hơn mà không dùng các bánh răng với số răng quá lớn. Hình H.5_14 vẽ sơ đồ của một dây courroir (hoặc chain) giữa hai ròng rọc (pulley). Giả sử không có sự trượt giữa chúng. Dễ thấy rằng phương trình (5.41) vẫn còn được áp dụng trong trường</para>
+        <para id="id21578844">hợp này. Thật vậy, sự phản xạ (hay sự truyền dẫn) của momen, quán tính ma sát thì tương tự như trong một bộ bánh răng.</para>
+        <figure id="id21044402">
+          <media id="id1165056208468" alt=""><image src="../../media/graphics12-13bf.png" mime-type="image/png" height="144" width="338"/></media>
+        </figure>
+        <para id="id21044426">Đòn bẩy (lever) như trong hình H.5_15 truyền chuyển động thẳng và lực tương tự cách thức mà bộ bánh răng truyền chuyển động quay.</para>
+        <para id="id21044436">Hệ thức giữa lực và khoảng cách là : </para>
+        <para id="id21044449"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mfrac><m:msub><m:mi>f</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:msub><m:mi>f</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mfrac></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  {f rSub { size 8{1} } }  over  {f rSub { size 8{2} } } } } {}</m:annotation></m:semantics></m:math> = 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mfrac><m:msub><m:mi>l</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:msub><m:mi>l</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mfrac></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  {l rSub { size 8{2} } }  over  {l rSub { size 8{1} } } } } {}</m:annotation></m:semantics></m:math> = 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mfrac><m:msub><m:mi>x</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:msub><m:mi>x</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mfrac></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  {x rSub { size 8{2} } }  over  {x rSub { size 8{1} } } } } {}</m:annotation></m:semantics></m:math>(5.43)</para>
+        <figure id="id21626490">
+          <media id="id1165056057440" alt=""><image src="../../media/graphics13-9951.png" mime-type="image/png" height="179" width="270"/></media>
+        </figure>
+      </section>
+    </section>
+    <section id="id-822427064601">
+      <title>PHƯƠNG TRÌNH CỦA CỦA CÁC HỆ THỐNG CƠ KHÍ.</title>
+      <para id="id21626524">Để viết các phương trình của một hệ cơ tuyến tính , trước nhất phải xây dựng trước một mô hình của hệ, bao gồm các bộ phận tuyến tính nối nhau. Sau đó áp dụng định luật Newton.</para>
+      <para id="id21626536">Thí dụ 5.2 :</para>
+      <para id="id21626547">Xem một hệ thống vẽ ở hình H. 5_16a . Sơ đồ vật thể tự do của hệ vẽ ở hình H.5_16b.</para>
+      <para id="id21626561">Phương trình lực của hệ được viết :</para>
+      <para id="id21626573"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>f</m:mi><m:mfenced open="" close=""><m:mi>t</m:mi></m:mfenced></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{f left (t right )} {}</m:annotation></m:semantics></m:math>= 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>M</m:mi><m:mfrac><m:mrow><m:msup><m:mi>d</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup><m:mi>y</m:mi><m:mfenced open="" close=""><m:mi>t</m:mi></m:mfenced></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msup><m:mtext>dt</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mrow></m:mstyle></m:mfrac></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{M {  {d rSup { size 8{2} } y left (t right )}  over  { ital "dt" rSup { size 8{2} } } } } {}</m:annotation></m:semantics></m:math>+
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>B</m:mi><m:mfrac><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dy</m:mtext></m:mrow></m:mstyle><m:mfenced open="" close=""><m:mi>t</m:mi></m:mfenced></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{B {  { ital "dy" left (t right )}  over  { ital "dt"} } } {}</m:annotation></m:semantics></m:math> + 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>Ky</m:mtext></m:mrow></m:mstyle><m:mfenced open="" close=""><m:mi>t</m:mi></m:mfenced></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ ital "Ky" left (t right )} {}</m:annotation></m:semantics></m:math><m:math><m:semantics><m:mrow/><m:annotation encoding="StarMath 5.0">{}</m:annotation></m:semantics></m:math>  (5.44)</para>
+      <para id="id22020659">
+        <media id="id1165047963890" alt=""><image src="../../media/graphics14-6c59.png" mime-type="image/png" height="222" width="322"/></media>
+        <media id="id1165049441643" alt=""><image src="../../media/graphics15-d381.png" mime-type="image/png" height="211" width="272"/></media>
+      </para>
+      <para id="id22020716">Phương trình cấp 2 (5.44) có thể phân thành hai phương trình trạng thái cấp một. Đặt 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:msub><m:mi>x</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{x rSub { size 8{1} } } {}</m:annotation></m:semantics></m:math>=y và 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:msub><m:mi>x</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{x rSub { size 8{2} } } {}</m:annotation></m:semantics></m:math>= 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mfrac><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dy</m:mtext></m:mrow></m:mstyle><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  { ital "dy"}  over  { ital "dt"} } } {}</m:annotation></m:semantics></m:math> như là các biến số trạng thái.</para>
+      <para id="id21012542"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mfrac><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext>dx</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mfenced open="" close=""><m:mi>t</m:mi></m:mfenced></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  { ital "dx" rSub { size 8{1} }  left (t right )}  over  { ital "dt"} } } {}</m:annotation></m:semantics></m:math>= 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:msub><m:mi>x</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:mfenced open="" close=""><m:mi>t</m:mi></m:mfenced></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{x rSub { size 8{2} }  left (t right )} {}</m:annotation></m:semantics></m:math> (5.45)</para>
+      <para id="id21012706"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mfrac><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext>dx</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mfenced open="" close=""><m:mi>t</m:mi></m:mfenced></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  { ital "dx" rSub { size 8{2} }  left (t right )}  over  { ital "dt"} } } {}</m:annotation></m:semantics></m:math>= 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow><m:mo stretchy="false">−</m:mo><m:mfrac><m:mi>K</m:mi><m:mi>M</m:mi></m:mfrac></m:mrow><m:msub><m:mi>x</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mfenced open="" close=""><m:mi>t</m:mi></m:mfenced></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ -  {  {K}  over  {M} } x rSub { size 8{1} }  left (t right )} {}</m:annotation></m:semantics></m:math> - 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mfrac><m:mi>B</m:mi><m:mi>M</m:mi></m:mfrac><m:msub><m:mi>x</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:mfenced open="" close=""><m:mi>t</m:mi></m:mfenced></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  {B}  over  {M} } x rSub { size 8{2} }  left (t right )} {}</m:annotation></m:semantics></m:math> + 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mfrac><m:mn>1</m:mn><m:mi>M</m:mi></m:mfrac><m:mi>f</m:mi><m:mfenced open="" close=""><m:mi>t</m:mi></m:mfenced></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  {1}  over  {M} } f left (t right )} {}</m:annotation></m:semantics></m:math> (5.46)</para>
+      <para id="id21040498">Để hệ thống cơ trên đây tương đương với mạch RLC nối tiếp của mạch điện.</para>
+      <para id="id21040511">Với sự tương đương giữa một hệ thống cơ và một hệ thống điện, việc thành lập trực tiếp các phương trình trạng thái cho một hệ thống cơ sẽ trở nên đơn giản.</para>
+      <para id="id21040529">Nếu ta xem khối lượng thì tương đương với điện cảm, hằng số lò xo K thì tương đương với nghịch đảo của điện dung 1/C .</para>
+      <para id="id21040542">Vậy có thể chỉ định v(t): vận tốc và fk(t): lực tác động lên lò xo như là các biến số trạng thái. Lý do là cái trước tương tự dòng điện trong cuộn cảm, và cái sau tương tự như điện thế ngang qua tụ.</para>
+      <para id="id21040563">Do đó phương trình trạng thái của hệ được viết bằng:</para>
+      <para id="id21040570">Lực trên khối lượng:</para>
+      <para id="id21040578"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>M</m:mi><m:mrow><m:mfrac><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dv</m:mtext></m:mrow></m:mstyle><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">=</m:mo><m:mrow><m:mo stretchy="false">−</m:mo><m:mstyle fontstyle="italic"><m:mrow><m:mtext>Bv</m:mtext></m:mrow></m:mstyle></m:mrow></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">−</m:mo><m:msub><m:mi>f</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>k</m:mi></m:mrow></m:mstyle></m:msub></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">+</m:mo><m:mi>f</m:mi></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{M {  { ital "dv" \( t \) }  over  { ital "dt"} } = -  ital "Bv" \( t \)  - f rSub { size 8{k} }  \( t \) +f \( t \) } {}</m:annotation></m:semantics></m:math> (5.47)</para>
+      <para id="id21040743">Vận tốc của lò xo :</para>
+      <para id="id21040751"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mfrac><m:mn>1</m:mn><m:mi>k</m:mi></m:mfrac><m:mrow><m:mfrac><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext>df</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mi>k</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">=</m:mo><m:mi>v</m:mi></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  {1}  over  {k} }  {  { ital "df" rSub { size 8{k} }  \( t \) }  over  { ital "dt"} } =v \( t \) } {}</m:annotation></m:semantics></m:math> (5.48)</para>
+      <para id="id22326450">Phương trình trên thì giống như cách viết phương trình điện thế ngang qua 1 cuộn cảm. Còn phương trình dưới giống như phương trình ngang qua tụ.</para>
+      <para id="id22326466">Thí dụ đơn giản trên cho thấy các phương trình trạng thái và biến số trạng thái của 1 hệ thống động thì không duy nhất.</para>
+      <para id="id22326478">Thí dụ 5.3:</para>
+      <para id="id22326496">Xem 1 hệ thống như hình H.5_17a. Vì lò xo bị biến dạng khi chịu tác dụng của lực f(t) hai độ dời y1 và y2 phải được chỉ định cho 2 đầu mút của lò xo. Sơ đồ vật thể tự do của hệ vẽ ở hình H.5_17b.</para>
+      <figure id="id22326533">
+        <media id="id1165048345601" alt=""><image src="../../media/graphics16-4154.png" mime-type="image/png" height="281" width="632"/></media>
+      </figure>
+      <para id="id22326557">Từ H.5_17b, các phương trình lực được viết :</para>
+      <para id="id22326566">f(t)=K[y1(t)-y2(t)]  (5.49)</para>
+      <para id="id22326605"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>K</m:mi><m:mo stretchy="false">[</m:mo><m:msub><m:mi>y</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">−</m:mo><m:msub><m:mi>y</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo><m:mrow><m:mo stretchy="false">]</m:mo><m:mo stretchy="false">=</m:mo><m:mi>M</m:mi></m:mrow><m:mrow><m:mfrac><m:mrow><m:msup><m:mi>d</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup><m:msub><m:mi>y</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msup><m:mtext>dt</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">+</m:mo><m:mi>B</m:mi></m:mrow><m:mfrac><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext>dy</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{K \[ y rSub { size 8{1} }  \( t \)  - y rSub { size 8{2} }  \( t \)  \] =M {  {d rSup { size 8{2} } y rSub { size 8{2} }  \( t \) }  over  { ital "dt" rSup { size 8{2} } } } +B {  { ital "dy" rSub { size 8{2} }  \( t \) }  over  { ital "dt"} } } {}</m:annotation></m:semantics></m:math> (5.50)</para>
+      <para id="id21609366">Để viết các phương trình trạng thái của hệ thống, ta đặt:</para>
+      <para id="id21609374">X1(t)=y2(t)</para>
+      <para id="id21609400">X2(t)=
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mfrac><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext>dy</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  { ital "dy" rSub { size 8{2} }  \( t \) }  over  { ital "dt"} } } {}</m:annotation></m:semantics></m:math></para>
+      <para id="id21609494">Thì các phương trình (5.49) và (5.50) được viết lại:</para>
+      <para id="id21747442"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow><m:mfrac><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext>dx</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">=</m:mo><m:msub><m:mi>x</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  { ital "dx" rSub { size 8{1} }  \( t \) }  over  { ital "dt"} } =x rSub { size 8{2} }  \( t \) } {}</m:annotation></m:semantics></m:math> (5.51)</para>
+      <para id="id21747559"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow><m:mfrac><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext>dx</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">=</m:mo><m:mrow><m:mo stretchy="false">−</m:mo><m:mfrac><m:mi>B</m:mi><m:mi>M</m:mi></m:mfrac></m:mrow></m:mrow><m:msub><m:mi>x</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">+</m:mo><m:mfrac><m:mn>1</m:mn><m:mi>M</m:mi></m:mfrac></m:mrow><m:mi>f</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  { ital "dx" rSub { size 8{2} }  \( t \) }  over  { ital "dt"} } = -  {  {B}  over  {M} } x rSub { size 8{2} }  \( t \) + {  {1}  over  {M} } f \( t \) } {}</m:annotation></m:semantics></m:math> (5.52)</para>
+      <para id="id21747711">Nếu ta chỉ định vận tốc v(t) của khối lượng M là 1 trạng thái biến số , lực fk(t) trên lò xo là 1 biến số, thì:</para>
+      <para id="id21747723"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow><m:mfrac><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dv</m:mtext></m:mrow></m:mstyle><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">=</m:mo><m:mrow><m:mo stretchy="false">−</m:mo><m:mfrac><m:mi>B</m:mi><m:mi>M</m:mi></m:mfrac></m:mrow></m:mrow><m:mi>v</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">+</m:mo><m:mfrac><m:mn>1</m:mn><m:mi>M</m:mi></m:mfrac></m:mrow><m:msub><m:mi>f</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>k</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  { ital "dv" \( t \) }  over  { ital "dt"} } = -  {  {B}  over  {M} } v \( t \) + {  {1}  over  {M} } f rSub { size 8{k} }  \( t \) } {}</m:annotation></m:semantics></m:math> (5.53) </para>
+      <para id="id22079750">fk(t)=f(t) (5.54)</para>
+      <para id="id22079763">Mạch điện tương đương với hệ cơ trên được vẽ ở hình H.5­_18.</para>
+      <figure id="id22079777">
+        <media id="id1165049118228" alt=""><image src="../../media/graphics17-09eb.png" mime-type="image/png" height="158" width="310"/></media>
+      </figure>
+      <para id="id22079801">Nếu muốn tìm độ dời y1(t) tại điển mà y(t) áp dụng vào, ta dùng hệ thức:</para>
+      <para id="id22079820"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow><m:msub><m:mi>y</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">=</m:mo><m:mrow><m:mfrac><m:mrow><m:msub><m:mi>f</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>k</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mi>k</m:mi></m:mfrac><m:mo stretchy="false">+</m:mo><m:msub><m:mi>y</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:mrow><m:mfrac><m:mrow><m:mi>f</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mi>k</m:mi></m:mfrac><m:mo stretchy="false">+</m:mo><m:mrow><m:msubsup><m:mo stretchy="false">∫</m:mo><m:mstyle fontsize="8pt"><m:mrow><m:mn>0</m:mn></m:mrow></m:mstyle><m:mstyle fontsize="8pt"><m:mrow><m:mi>t</m:mi></m:mrow></m:mstyle></m:msubsup><m:mrow><m:mi>v</m:mi><m:mo stretchy="false">(</m:mo><m:mi>τ</m:mi><m:mo stretchy="false">)</m:mo><m:mrow><m:mi fontstyle="italic">dτ</m:mi><m:mo stretchy="false">+</m:mo><m:msub><m:mi>y</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow><m:mo stretchy="false">(</m:mo><m:mn>0</m:mn><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mrow></m:mrow></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{y rSub { size 8{2} } = {  {f rSub { size 8{k} }  \( t \) }  over  {k} } +y rSub { size 8{2} }  \( t \) = {  {f \( t \) }  over  {k} } + Int rSub { size 8{0} }  rSup { size 8{t} }  {v \( τ \) dτ+y rSub { size 8{2} }  \( 0 \) } } {}</m:annotation></m:semantics></m:math> (5.55)</para>
+      <para id="id21754621">Trong đó y2(0) là độ dời ban đầu của khối lượng M .</para>
+      <para id="id21754639">Mặt khác, có thể giải cho y2(t) từ 2 phương trình trạng thái (5.51) và (5.52) và y1(t) được xác định bằng (5.49).</para>
+      <para id="id21754673">Thí dụ 5.4:</para>
+      <para id="id21754692">Hệ thống quay vẽ ở hình H.5_19 gồm 1 đầu thì cố định. Moment quán tính của dĩa quanh trục là J. Rìa của dĩa được lướt trên mặt phẳng và hệ số ma sát trượt là B. Bỏ qua quán tính của trục. Hằng số xoắn là K.</para>
+      <para id="id21754710">
+        <media id="id1165056156515" alt=""><image src="../../media/graphics18-d26e.png" mime-type="image/png" height="232" width="252"/></media>
+        <media id="id1165049295439" alt=""><image src="../../media/graphics19-2e25.png" mime-type="image/png" height="231" width="222"/></media>
+      </para>
+      <para id="id21754775">Giả sử 1 moment áp dụng vào hệ thống như hình vẽ: </para>
+      <para id="id22361755">Phương trình momen quanh trục được viết từ hình H.5_19b</para>
+      <para id="id22361765">T(t)=
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>J</m:mi><m:mrow><m:mfrac><m:mrow><m:msup><m:mi>d</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup><m:mi>θ</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msup><m:mtext>dt</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">+</m:mo><m:mi>B</m:mi></m:mrow><m:mrow><m:mfrac><m:mrow><m:mi fontstyle="italic">dθ</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">+</m:mo><m:mi fontstyle="italic">Kθ</m:mi></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{J {  {d rSup { size 8{2} } θ \( t \) }  over  { ital "dt" rSup { size 8{2} } } } +B {  {dθ \( t \) }  over  { ital "dt"} } +Kθ \( t \) } {}</m:annotation></m:semantics></m:math> (5.62)</para>
+      <para id="id22361922">Hệ thống này tương tự như hệ thống chuyển động tịnh tiến ở H.5_16. Các phương trình trạng thái có thể viết bằng các định nghĩa các biến. x1(t)=
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>θ</m:mi><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{θ \( t \) } {}</m:annotation></m:semantics></m:math></para>
+      <para id="id22362005">Và 
+<m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow><m:mfrac><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext>dx</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">=</m:mo><m:msub><m:mi>x</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  { ital "dx" rSub { size 8{1} }  \( t \) }  over  { ital "dt"} } =x rSub { size 8{2} }  \( t \) } {}</m:annotation></m:semantics></m:math></para>
+      <para id="id21748841">Ngươì đọc có thể thực hiện các bước tiếp theo để viết phương trình trạng thái như là 1 bài tập.</para>
+    </section>
+    <section id="id-244350096406">
+      <title>MÔ HÌNH HÓA ĐỘNG CƠ DC.</title>
+      <section id="id-299212355547">
+        <title>Sơ lược về các lọai động cơ DC:</title>
+        <para id="id21748870">Motor DC có thể được xếp thành 2 loại : loại có từ thông thay đổi được và loại không có từ thông thay đổi được.</para>
+        <para id="id21748886">-Trong loại thứ nhất: Từ trường được tạo bởi cuộn cảm. Mà cuộn cảm thì đấu với 1 từ trường ngoài. Loại động cơ này lại được có thể chia làm 2 loại: kích từ nối tiếp và kích từ riêng.</para>
+        <para id="id21748902">
+          <media id="id1165049060653" alt=""><image src="../../media/graphics20-836c.png" mime-type="image/png" height="231" width="220"/></media>
+          <media id="id1165048213833" alt=""><image src="../../media/graphics21-4ad9.png" mime-type="image/png" height="231" width="330"/></media>
+        </para>
+        <para id="id21748959">H.5_19a, ký hiệu của động cơ DC kích từ nối tiếp. Cuộn cảm đấu nối tiếp với phần ứng.</para>
+        <para id="id21748970">H.5_19b động cơ nối tiếp kích từ riêng. Cuộn cảm cách ly với phần ứng và được cấp điện bởi 1 nguồn điện khác.</para>
+        <para id="id21748983">+ Trong loại kích từ nối tiếp, từ thông trong động cơ thì tỷ lệ với dòng điện cảm, mà dòng này thì thay đổi, sự liên hệ giữa moment và vận tốc thường là phi tuyến. Như vậy loại động cơ này chỉ dùng trong những ứng dụng đặt biệt cần đến moment lớn với vận tốc thấp. Momen của motor giảm rất nhanh khi vận tốc tăng.</para>
+        <para id="id21749001">+ Đối vối loại kích từ riêng từ thông thì độc lập với dòng điện ứng. Vì vậy nó có thể được điều khiển từ bên ngoài trong 1 phạm vi rộng.</para>
+        <para id="id21749014">-Trong loại thứ 2 motor DC có từ thông không đổi, từ trường phần cảm là do 1 nam châm vĩnh cửu và không thay đổi . Loại này gọi là PM motor.</para>
+        <para id="id21749028">Điều này khiến đặc tuyến moment-vận tốc tương đối tuyến tính.</para>
+        <para id="id21749037">Các động cơ DC qui ước đều có chổi và cổ góp. Nhưng hiện nay có loại động cơ DC mà cổ góp được thay bằng bộ phận điện tử . Loại này được gọi là động cơ DC không chổi(âDC brushless motor). </para>
+      </section>
+      <section id="id-694612399887">
+        <title>Mô hình hóa động cơ DC:</title>
+        <para id="id21749062">Vì các động cơ DC được dùng rất nhiều trong các hệ điều khiển ta cần quan tâm tới việc thiếp lập 1 mô hình toán học cho chúng.</para>
+        <para id="id21008728">Sau đây ta khai triển mô hình toán học cho 2 lọai động cơ DC kích từ riêng và loại kích từ bằng nam châm vĩnh cữu (PM.motor).</para>
+        <list id="id21008743" list-type="bulleted">
+          <item>Động cơ DC kích từ riêng:</item>
+        </list>
+        <figure id="id21008758">
+          <media id="id1165047927927" alt=""><image src="../../media/graphics22-4b06.png" mime-type="image/png" height="313" width="441"/></media>
+        </figure>
+        <para id="id21008782">Phần ứng được mô hình hóa như là 1 mạch với điện trở Ra, nối tiếp với 1 cuộn cảm La. Một nguồn điện thế Eb biểu diễn cho sức điện động sinh ra trong phần ứng khi rotor quay.</para>
+        <para id="id21008797">Phần cảm được biểu diễn bằng 1 điện trở Rf nối tiếp với 1 cuộn điện cảm Lf . Từ thông trong khe từ là rỗng.</para>
+        <para id="id21008810">Các biến số và thông số tóm tắt như sau:</para>
+        <para id="id21008820">Ea(t): điện thế phần ứng.</para>
+        <para id="id21008831">Ef(t): điện thế phần cảm.</para>
+        <para id="id21008842">Ra: điện trở phần ứng.</para>
+        <para id="id21008854">Eb(t): suất điện động trong phần ứng.</para>
+        <para id="id21008865">Rf: điện trở phần cảm.</para>
+        <para id="id21008876"/>
+        <para id="id21008881">La: điện cảm phần ứng.</para>
+        <para id="id21008893">Lf: điện cảm phần cảm.</para>
+        <para id="id21008905">I a(t): dòng điện phần ứng.</para>
+        <para id="id21008924">I f(t): dòng điện phần cảm.</para>
+        <para id="id21008944">Ki: hằng số moment.</para>
+        <para id="id21008955">Kb: hằng số suất điện động phần ứng.</para>
+        <para id="id21008966">Tm(t): moment được khai triển bởi động cơ. </para>
+        <para id="id21008978">Jm: quán tính của rotor.</para>
+        <para id="id21008988">Bm: hệ số ma sát trượt. </para>
+        <para id="id21008999"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo><m:mi>:</m:mi></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{θ rSub { size 8{m} }  \( t \) :} {}</m:annotation></m:semantics></m:math> góc dời của rotor.</para>
+        <para id="id23242295"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:msub><m:mi>ω</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo><m:mi>:</m:mi></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ω rSub { size 8{m} }  \( t \) :} {}</m:annotation></m:semantics></m:math>vận tốc dài của rotor.</para>
+        <para id="id23242379">TL(t): moment tải.</para>
+        <para id="id23242389">Giả sử ef(t) được cung cấp 1 cách hiệu quả để cho if(t) không đổi. Sự điều khiển được đặt lên 2 đầu phần ứng dưới dạng điện thế ea(t). Và để phân giải tuyến tính ta giả sử thêm:</para>
+        <para id="id23242405">1- Từ thông ở khe từ thì tỷ lệ với dòng điện cảm.</para>
+        <para id="id23242415">2- Moment khai triển bởi động cơ thì tỷ lệ với từ thông trong khe từ và dòng điện ứng .</para>
+        <para id="id23242426">Vì K mKf If là hằng số, nên:</para>
+        <para id="id23242446">Tm(t)=Ki ia(t) (5.65)</para>
+        <para id="id23242460">Ki là hằng số moment. </para>
+        <para id="id23242468">Bắt đầu với điện thế điều khiển ở ngõ vào các phương trình nhân quả của hệ được viết lại: </para>
+        <para id="id23242482"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow><m:mfrac><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext>di</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mi>a</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">=</m:mo><m:mfrac><m:mn>1</m:mn><m:msub><m:mi>L</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>a</m:mi></m:mrow></m:mstyle></m:msub></m:mfrac></m:mrow><m:msub><m:mi>e</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>a</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">−</m:mo><m:mfrac><m:msub><m:mi>R</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>a</m:mi></m:mrow></m:mstyle></m:msub><m:msub><m:mi>L</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>a</m:mi></m:mrow></m:mstyle></m:msub></m:mfrac></m:mrow><m:msub><m:mi>i</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>a</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">−</m:mo><m:mfrac><m:mn>1</m:mn><m:msub><m:mi>L</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>a</m:mi></m:mrow></m:mstyle></m:msub></m:mfrac></m:mrow><m:msub><m:mi>e</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>b</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  { ital "di" rSub { size 8{a} }  \( t \) }  over  { ital "dt"} } = {  {1}  over  {L rSub { size 8{a} } } } e rSub { size 8{a} }  \( t \)  -  {  {R rSub { size 8{a} } }  over  {L rSub { size 8{a} } } } i rSub { size 8{a} }  \( t \)  -  {  {1}  over  {L rSub { size 8{a} } } } e rSub { size 8{b} }  \( t \) } {}</m:annotation></m:semantics></m:math> (5.66)</para>
+        <para id="id23135178">Tm(t)=Ki ia(t) (5.67)</para>
+        <para id="id23135194"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:msub><m:mi>e</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>b</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:msub><m:mi>K</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>b</m:mi></m:mrow></m:mstyle></m:msub></m:mrow><m:mrow><m:mfrac><m:mrow><m:msub><m:mi fontstyle="italic">dθ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">=</m:mo><m:msub><m:mi>K</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>b</m:mi></m:mrow></m:mstyle></m:msub></m:mrow><m:msub><m:mi>ω</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{e rSub { size 8{b} }  \( t \) =K rSub { size 8{b} }  {  {dθ rSub { size 8{m} }  \( t \) }  over  { ital "dt"} } =K rSub { size 8{b} } ω rSub { size 8{m} }  \( t \) } {}</m:annotation></m:semantics></m:math> (5.68)</para>
+        <para id="id22334103"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow><m:mfrac><m:mrow><m:msup><m:mi>d</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msup><m:mtext>dt</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup></m:mrow></m:mstyle></m:mfrac><m:mo stretchy="false">=</m:mo><m:mfrac><m:mn>1</m:mn><m:msub><m:mi>J</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub></m:mfrac></m:mrow><m:msub><m:mi>T</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">−</m:mo><m:mfrac><m:mn>1</m:mn><m:msub><m:mi>J</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub></m:mfrac></m:mrow><m:msub><m:mi>T</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>L</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">−</m:mo><m:mfrac><m:msub><m:mi>B</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub><m:msub><m:mi>J</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub></m:mfrac></m:mrow><m:mfrac><m:mrow><m:msub><m:mi fontstyle="italic">dθ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  {d rSup { size 8{2} } θ rSub { size 8{m} }  \( t \) }  over  { ital "dt" rSup { size 8{2} } } } = {  {1}  over  {J rSub { size 8{m} } } } T rSub { size 8{m} }  \( t \)  -  {  {1}  over  {J rSub { size 8{m} } } } T rSub { size 8{L} }  \( t \)  -  {  {B rSub { size 8{m} } }  over  {J rSub { size 8{m} } } }  {  {dθ rSub { size 8{m} }  \( t \) }  over  { ital "dt"} } } {}</m:annotation></m:semantics></m:math> (5.69)</para>
+        <para id="id22334352">Trong đo,ù TL(t) là moment tải(cản). Một cách tổng quát TL(t) biểu diễn 1 moment mà động cơ phải vuợt quá mới có thể thay đổi được. TL(t) cũng có thể là moment ma sát không đổi thí dụ ma sát culomb.</para>
+        <para id="id21043862">* Các phương trình (5.66) đến (5.69) là nguyên nhân của các nguyên nhân.</para>
+        <para id="id21043877">Phương trình (5.56) xem diat)/dt là hậu quả trung gian do ea(t) gây ra. Trong phương trình (5.57) ia(t) tạo nên moment Tm(t).</para>
+        <para id="id21043889">Phương trình (5.68) định nhgĩa suất điện động phần ứng và cuối cùng trong phương trình (5.69) moment gây ra góc dời m.</para>
+        <para id="id21043914">Các biến số trạng thái của hệ có thể được định nhgĩa là m , Wm và ia.</para>
+        <para id="id21043937">Các phương trình trạng thái của động cơ DC , được viết dưới dạng ma trận (5.70):</para>
+        <para id="id21043948">
+          <m:math>
+            <m:semantics>
+              <m:mrow/>
+              <m:annotation encoding="StarMath 5.0">{}</m:annotation>
+            </m:semantics>
+          </m:math>
+        </para>
+        <para id="id21043984"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow><m:mfenced open="[" close="]"><m:mtable><m:mtr><m:mtd><m:mrow><m:mfrac><m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:msub><m:mtext>di</m:mtext><m:mstyle fontsize="8pt"><m:mrow><m:mi>a</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac><m:mrow/></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd><m:mrow><m:mfrac><m:mrow><m:msub><m:mi fontstyle="italic">dω</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac><m:mrow/></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd><m:mfrac><m:mrow><m:msub><m:mi fontstyle="italic">dθ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mstyle fontstyle="italic"><m:mrow><m:mtext>dt</m:mtext></m:mrow></m:mstyle></m:mfrac></m:mtd></m:mtr></m:mtable></m:mfenced><m:mo stretchy="false">=</m:mo><m:mfenced open="[" close="]"><m:mtable><m:mtr><m:mtd><m:mrow><m:mfrac><m:mrow><m:mo stretchy="false">−</m:mo><m:msub><m:mi>R</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>a</m:mi></m:mrow></m:mstyle></m:msub></m:mrow><m:msub><m:mi>L</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>a</m:mi></m:mrow></m:mstyle></m:msub></m:mfrac><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:mfrac><m:mrow><m:mo stretchy="false">−</m:mo><m:msub><m:mi>K</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>b</m:mi></m:mrow></m:mstyle></m:msub></m:mrow><m:msub><m:mi>L</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>a</m:mi></m:mrow></m:mstyle></m:msub></m:mfrac><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:mn>0</m:mn><m:mrow/></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd><m:mrow><m:mfrac><m:msub><m:mi>K</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>i</m:mi></m:mrow></m:mstyle></m:msub><m:msub><m:mi>J</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub></m:mfrac><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:mfrac><m:mrow><m:mo stretchy="false">−</m:mo><m:msub><m:mi>B</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub></m:mrow><m:msub><m:mi>J</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub></m:mfrac><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:mn>0</m:mn><m:mrow/></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd><m:mrow><m:mn>0</m:mn><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:mn>1</m:mn><m:mrow/></m:mrow></m:mtd><m:mtd><m:mrow><m:mn>0</m:mn><m:mrow/></m:mrow></m:mtd></m:mtr></m:mtable></m:mfenced></m:mrow><m:mtext>.</m:mtext><m:mrow><m:mfenced open="[" close="]"><m:mtable><m:mtr><m:mtd><m:mrow><m:mfrac><m:mrow><m:msub><m:mi>i</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>a</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mrow/></m:mfrac><m:mrow/></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd><m:mrow><m:mfrac><m:mrow><m:msub><m:mi>ω</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mrow/></m:mfrac><m:mrow/></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd><m:mrow><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mtd></m:mtr></m:mtable></m:mfenced><m:mo stretchy="false">+</m:mo><m:mfenced open="[" close="]"><m:mtable><m:mtr><m:mtd><m:mrow><m:mfrac><m:mn>1</m:mn><m:msub><m:mi>L</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>a</m:mi></m:mrow></m:mstyle></m:msub></m:mfrac><m:mrow/></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd><m:mrow><m:mfrac><m:mn>0</m:mn><m:mrow/></m:mfrac><m:mrow/></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd><m:mn>0</m:mn></m:mtd></m:mtr></m:mtable></m:mfenced></m:mrow><m:mtext>.</m:mtext><m:msub><m:mi>e</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>a</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">−</m:mo><m:mfenced open="[" close="]"><m:mtable><m:mtr><m:mtd><m:mrow><m:mfrac><m:mn>0</m:mn><m:mrow/></m:mfrac><m:mrow/></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd><m:mrow><m:mfrac><m:mn>1</m:mn><m:msub><m:mi>J</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub></m:mfrac><m:mrow/></m:mrow></m:mtd></m:mtr><m:mtr><m:mtd><m:mn>0</m:mn></m:mtd></m:mtr></m:mtable></m:mfenced></m:mrow><m:mtext>.</m:mtext><m:msub><m:mi>T</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>L</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>t</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ left [ matrix {
+ {  { ital "di" rSub { size 8{a} }  \( t \) }  over  { ital "dt"} }  {} ##
+ {  {dω rSub { size 8{m} }  \( t \) }  over  { ital "dt"} }  {} ##
+ {  {dθ rSub { size 8{m} }  \( t \) }  over  { ital "dt"} } 
+}  right ]= left [ matrix {
+ {  { - R rSub { size 8{a} } }  over  {L rSub { size 8{a} } } }  {} #  {  { - K rSub { size 8{b} } }  over  {L rSub { size 8{a} } } }  {} # 0 {} ##
+ {  {K rSub { size 8{i} } }  over  {J rSub { size 8{m} } } }  {} #  {  { - B rSub { size 8{m} } }  over  {J rSub { size 8{m} } } }  {} # 0 {} ##
+0 {} # 1 {} # 0{}
+}  right ] "."  left [ matrix {
+ {  {i rSub { size 8{a} }  \( t \) }  over  {} }  {} ##
+ {  {ω rSub { size 8{m} }  \( t \) }  over  {} }  {} ##
+θ rSub { size 8{m} }  \( t \) 
+}  right ]+ left [ matrix {
+ {  {1}  over  {L rSub { size 8{a} } } }  {} ##
+ {  {0}  over  {} }  {} ##
+0
+}  right ] "." e rSub { size 8{a} }  \( t \)  -  left [ matrix {
+ {  {0}  over  {} }  {} ##
+ {  {1}  over  {J rSub { size 8{m} } } }  {} ##
+0
+}  right ] "." T rSub { size 8{L} }  \( t \) } {}</m:annotation></m:semantics></m:math> (5.70)</para>
+        <para id="id21043578">Nhớ là trong trường hợp này TL(t) là input thứ 2 trong các phương trình trạng thái.</para>
+        <para id="id21043588">Đồ hình trạng thái của hệ được vẽ ở hình H.5_27, bằng cách dùng phương trình (5.70).</para>
+        <para id="id21043598">Hàm chuyển giữa độ dời và điện thế suy được từ đồ hình trạng thái. </para>
+        <para id="id21043608"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mfrac><m:mrow><m:msub><m:mi>θ</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>s</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mrow><m:msub><m:mi>E</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>a</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">(</m:mo><m:mi>s</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mfrac><m:mo stretchy="false">=</m:mo><m:mfrac><m:msub><m:mi>K</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>i</m:mi></m:mrow></m:mstyle></m:msub><m:mrow><m:msub><m:mi>L</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>a</m:mi></m:mrow></m:mstyle></m:msub><m:msub><m:mi>J</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub><m:mrow><m:msup><m:mi>S</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>3</m:mn></m:mrow></m:mstyle></m:msup><m:mo stretchy="false">+</m:mo><m:mo stretchy="false">(</m:mo></m:mrow><m:msub><m:mi>R</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>a</m:mi></m:mrow></m:mstyle></m:msub><m:mrow><m:msub><m:mi>J</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">+</m:mo><m:msub><m:mi>B</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub></m:mrow><m:msub><m:mi>L</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>a</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">)</m:mo><m:mrow><m:msup><m:mi>S</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msup><m:mo stretchy="false">+</m:mo><m:mo stretchy="false">(</m:mo></m:mrow><m:msub><m:mi>K</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>b</m:mi></m:mrow></m:mstyle></m:msub><m:mrow><m:msub><m:mi>K</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>i</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">+</m:mo><m:msub><m:mi>R</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>a</m:mi></m:mrow></m:mstyle></m:msub></m:mrow><m:msub><m:mi>B</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">)</m:mo><m:mi>S</m:mi></m:mrow></m:mfrac></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{ {  {θ rSub { size 8{m} }  \( s \) }  over  {E rSub { size 8{a} }  \( s \) } } = {  {K rSub { size 8{i} } }  over  {L rSub { size 8{a} } J rSub { size 8{m} } S rSup { size 8{3} } + \( R rSub { size 8{a} } J rSub { size 8{m} } +B rSub { size 8{m} } L rSub { size 8{a} }  \) S rSup { size 8{2} } + \( K rSub { size 8{b} } K rSub { size 8{i} } +R rSub { size 8{a} } B rSub { size 8{m} }  \) S} } } {}</m:annotation></m:semantics></m:math> (5.71)</para>
+        <para id="id21753911">Trong đó TL đặt ở Zero.</para>
+        <figure id="id21753922">
+          <media id="id1165056239513" alt=""><image src="../../media/graphics23-6173.png" mime-type="image/png" height="301" width="633"/></media>
+        </figure>
+        <para id="id21753946">Một sơ đồ khối của hệ thống được trình bày như hình H.5_22.</para>
+        <figure id="id21753960">
+          <media id="id1165047948365" alt=""><image src="../../media/graphics24-39b1.png" mime-type="image/png" height="311" width="649"/></media>
+        </figure>
+      </section>
+    </section>
+  </content>
+</document>
