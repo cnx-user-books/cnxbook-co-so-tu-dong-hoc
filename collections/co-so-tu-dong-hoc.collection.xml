@@ -1,3 +1,20 @@
-<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en">  <metadata xmlns:md="http://cnx.rice.edu/mdml" mdml-version="0.5">  <md:content-id>col10756</md:content-id>  <md:title>Cơ sở tự động học</md:title>      <md:license url="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License 3.0</md:license>  <md:language>vi</md:language>              <md:uuid>fe769c5c-d735-4ecb-a6bf-9ceb7d3f9ef8</md:uuid>
-<md:slug>co-so-tu-dong-hoc</md:slug>
-</metadata>  <col:content>          <col:module document="m30117"/>                            <col:module document="m30484"/>                            <col:module document="m30606"/>                            <col:module document="m30832"/>                            <col:module document="m30154"/>                            <col:module document="m30043"/>                            <col:module document="m30096"/>                    </col:content></col:collection>
+<?xml version="1.0"?>
+<col:collection xmlns="http://cnx.rice.edu/collxml" xmlns:col="http://cnx.rice.edu/collxml" xml:lang="en" authors="ThS Ph&#x1EA1;m V&#x103;n T&#x1EA5;n">
+  <metadata xmlns:md="http://cnx.rice.edu/mdml" mdml-version="0.5">
+    <md:content-id>col10756</md:content-id>
+    <md:title>C&#x1A1; s&#x1EDF; t&#x1EF1; &#x111;&#x1ED9;ng h&#x1ECD;c</md:title>
+    <md:license url="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License 3.0</md:license>
+    <md:language>vi</md:language>
+    <md:uuid>fe769c5c-d735-4ecb-a6bf-9ceb7d3f9ef8</md:uuid>
+    <md:slug>co-so-tu-dong-hoc</md:slug>
+  </metadata>
+  <col:content>
+    <col:module document="m30117"/>
+    <col:module document="m30484"/>
+    <col:module document="m30606"/>
+    <col:module document="m30832"/>
+    <col:module document="m30154"/>
+    <col:module document="m30043"/>
+    <col:module document="m30096"/>
+  </col:content>
+</col:collection>
