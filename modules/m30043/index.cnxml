@@ -66,7 +66,7 @@
       <para id="id21707623">d) ổn định.</para>
       <list id="id21708584" list-type="enumerated">
         <item>bất ổn.
-<m:math><m:semantics><m:mrow/><m:annotation encoding="StarMath 5.0">{}</m:annotation></m:semantics></m:math></item>
+</item>
       </list>
     </section>
     <section id="id-211550240563">
@@ -160,16 +160,11 @@
       <para id="id21769635">Những nghiệm của phương trình đặc trưng R(s) = 0 có thể là thực, hay những cặp phức liên hợp đơn hay đa cấp (có lũy thừa hay không).</para>
       <para id="id21769648">Ta xem trường hợp những nghiệm này thực và đơn cấp, phương trình (6.1) có thể được viết:</para>
       <para id="id21769659">
-        <m:math>
-          <m:semantics>
-            <m:mrow/>
-            <m:annotation encoding="StarMath 5.0">{}</m:annotation>
-          </m:semantics>
-        </m:math>
+        
       </para>
       <para id="id21769696"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>G</m:mi><m:mo stretchy="false">(</m:mo><m:mi>s</m:mi><m:mrow><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:mfrac><m:mrow><m:mi>C</m:mi><m:mo stretchy="false">(</m:mo><m:mi>s</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mrow><m:mi>R</m:mi><m:mo stretchy="false">(</m:mo><m:mi>s</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mfrac></m:mrow><m:mo stretchy="false">=</m:mo><m:mfrac><m:mrow><m:mi>C</m:mi><m:mo stretchy="false">(</m:mo><m:mi>s</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mrow><m:mo stretchy="false">(</m:mo><m:mrow><m:mi>s</m:mi><m:mo stretchy="false">+</m:mo><m:msub><m:mi>s</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">(</m:mo><m:mrow><m:mi>s</m:mi><m:mo stretchy="false">+</m:mo><m:msub><m:mi>s</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow><m:mo stretchy="false">)</m:mo><m:mtext>.</m:mtext><m:mtext>.</m:mtext><m:mtext>.</m:mtext><m:mo stretchy="false">(</m:mo><m:mrow><m:mi>s</m:mi><m:mo stretchy="false">+</m:mo><m:msub><m:mi>s</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>n</m:mi></m:mrow></m:mstyle></m:msub></m:mrow><m:mo stretchy="false">)</m:mo></m:mrow></m:mfrac></m:mrow></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{G \( s \) = {  {C \( s \) }  over  {R \( s \) } } = {  {C \( s \) }  over  { \( s+s rSub { size 8{1} }  \)  \( s+s rSub { size 8{2} }  \)  "."  "."  "."  \( s+s rSub { size 8{n} }  \) } } } {}</m:annotation></m:semantics></m:math> (6.3)</para>
       <para id="id21700369">Trong đó, -s1, -s2,....-sn là những nghiệm của phương trình đặc trưng zero của R(s) hay là những cực của G(s).</para>
-      <para id="id21700397"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>G</m:mi><m:mo stretchy="false">(</m:mo><m:mi>s</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:mrow><m:mrow><m:mfrac><m:msub><m:mstyle fontsize="10pt"><m:mrow><m:mi>k</m:mi></m:mrow></m:mstyle><m:mstyle fontsize="8pt"><m:mrow><m:msub><m:mstyle fontsize="10pt"><m:mrow><m:mi>s</m:mi></m:mrow></m:mstyle><m:mstyle fontsize="6pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle></m:msub><m:mrow><m:mi>s</m:mi><m:mo stretchy="false">+</m:mo><m:msub><m:mi>s</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mfrac><m:mo stretchy="false">+</m:mo><m:mfrac><m:msub><m:mstyle fontsize="10pt"><m:mrow><m:mi>k</m:mi></m:mrow></m:mstyle><m:mstyle fontsize="8pt"><m:mrow><m:msub><m:mstyle fontsize="10pt"><m:mrow><m:mi>s</m:mi></m:mrow></m:mstyle><m:mstyle fontsize="6pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle></m:msub><m:mrow><m:mi>s</m:mi><m:mo stretchy="false">+</m:mo><m:msub><m:mi>s</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mfrac></m:mrow><m:mo stretchy="false">+</m:mo><m:mtext>.</m:mtext></m:mrow></m:mrow><m:mtext>.</m:mtext><m:mtext>.</m:mtext><m:mrow><m:mtext>.</m:mtext><m:mo stretchy="false">+</m:mo><m:mfrac><m:msub><m:mstyle fontsize="10pt"><m:mrow><m:mi>k</m:mi></m:mrow></m:mstyle><m:mstyle fontsize="8pt"><m:mrow><m:msub><m:mstyle fontsize="10pt"><m:mrow><m:mi>s</m:mi></m:mrow></m:mstyle><m:mstyle fontsize="6pt"><m:mrow><m:mi>n</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle></m:msub><m:mrow><m:mi>s</m:mi><m:mo stretchy="false">+</m:mo><m:msub><m:mi>s</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>n</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mfrac></m:mrow></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{G \( s \) = {  { { size 10{k} }  rSub { size 8{ { size 10{s} }  rSub { size 6{1} } } } }  over  {s+s rSub { size 8{1} } } } + {  { { size 10{k} }  rSub { size 8{ { size 10{s} }  rSub { size 6{2} } } } }  over  {s+s rSub { size 8{2} } } } + "."  "."  "."  "." + {  { { size 10{k} }  rSub { size 8{ { size 10{s} }  rSub { size 6{n} } } } }  over  {s+s rSub { size 8{n} } } } } {}</m:annotation></m:semantics></m:math><m:math><m:semantics><m:mrow/><m:annotation encoding="StarMath 5.0">{}</m:annotation></m:semantics></m:math> (6.4)</para>
+      <para id="id21700397"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>G</m:mi><m:mo stretchy="false">(</m:mo><m:mi>s</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:mrow><m:mrow><m:mfrac><m:msub><m:mstyle fontsize="10pt"><m:mrow><m:mi>k</m:mi></m:mrow></m:mstyle><m:mstyle fontsize="8pt"><m:mrow><m:msub><m:mstyle fontsize="10pt"><m:mrow><m:mi>s</m:mi></m:mrow></m:mstyle><m:mstyle fontsize="6pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle></m:msub><m:mrow><m:mi>s</m:mi><m:mo stretchy="false">+</m:mo><m:msub><m:mi>s</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mfrac><m:mo stretchy="false">+</m:mo><m:mfrac><m:msub><m:mstyle fontsize="10pt"><m:mrow><m:mi>k</m:mi></m:mrow></m:mstyle><m:mstyle fontsize="8pt"><m:mrow><m:msub><m:mstyle fontsize="10pt"><m:mrow><m:mi>s</m:mi></m:mrow></m:mstyle><m:mstyle fontsize="6pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle></m:msub><m:mrow><m:mi>s</m:mi><m:mo stretchy="false">+</m:mo><m:msub><m:mi>s</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub></m:mrow></m:mfrac></m:mrow><m:mo stretchy="false">+</m:mo><m:mtext>.</m:mtext></m:mrow></m:mrow><m:mtext>.</m:mtext><m:mtext>.</m:mtext><m:mrow><m:mtext>.</m:mtext><m:mo stretchy="false">+</m:mo><m:mfrac><m:msub><m:mstyle fontsize="10pt"><m:mrow><m:mi>k</m:mi></m:mrow></m:mstyle><m:mstyle fontsize="8pt"><m:mrow><m:msub><m:mstyle fontsize="10pt"><m:mrow><m:mi>s</m:mi></m:mrow></m:mstyle><m:mstyle fontsize="6pt"><m:mrow><m:mi>n</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mstyle></m:msub><m:mrow><m:mi>s</m:mi><m:mo stretchy="false">+</m:mo><m:msub><m:mi>s</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>n</m:mi></m:mrow></m:mstyle></m:msub></m:mrow></m:mfrac></m:mrow></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{G \( s \) = {  { { size 10{k} }  rSub { size 8{ { size 10{s} }  rSub { size 6{1} } } } }  over  {s+s rSub { size 8{1} } } } + {  { { size 10{k} }  rSub { size 8{ { size 10{s} }  rSub { size 6{2} } } } }  over  {s+s rSub { size 8{2} } } } + "."  "."  "."  "." + {  { { size 10{k} }  rSub { size 8{ { size 10{s} }  rSub { size 6{n} } } } }  over  {s+s rSub { size 8{n} } } } } {}</m:annotation></m:semantics></m:math> (6.4)</para>
       <para id="id21712045">Những hệ số Ksi (i=1, 2, 3,...n) được xác định bằng cách nhóm 2 vế của (6.3) hoặc (6.4) cho (s+si) rồi đặt s = -si.</para>
       <para id="id21712063">Thí dụ, để tìm hệ số Ks1, ta nhóm cả hai vế (6.3) cho (s+s1) và đặt s = -s1.</para>
       <para id="id21712097"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow><m:msub><m:mi>K</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi fontstyle="italic">S1</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">=</m:mo><m:msub><m:mfenced open="[" close="]"><m:mrow><m:mo stretchy="false">(</m:mo><m:mrow><m:mi>s</m:mi><m:mo stretchy="false">+</m:mo><m:msub><m:mi>s</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow><m:mo stretchy="false">)</m:mo><m:mfrac><m:mrow><m:mi>C</m:mi><m:mo stretchy="false">(</m:mo><m:mi>s</m:mi><m:mo stretchy="false">)</m:mo></m:mrow><m:mrow><m:mi>R</m:mi><m:mo stretchy="false">(</m:mo><m:mi>s</m:mi><m:mo stretchy="false">)</m:mo></m:mrow></m:mfrac></m:mrow></m:mfenced><m:mstyle fontsize="8pt"><m:mrow><m:mrow><m:mi>S</m:mi><m:mo stretchy="false">=</m:mo><m:mrow><m:mo stretchy="false">−</m:mo><m:mi fontstyle="italic">S1</m:mi></m:mrow></m:mrow></m:mrow></m:mstyle></m:msub></m:mrow><m:mo stretchy="false">=</m:mo><m:mfrac><m:mrow><m:mi>C</m:mi><m:mrow><m:mo stretchy="false">(</m:mo><m:mo stretchy="false">−</m:mo><m:msub><m:mi>s</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow><m:mo stretchy="false">)</m:mo></m:mrow><m:mrow><m:mo stretchy="false">(</m:mo><m:mrow><m:msub><m:mi>s</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>2</m:mn></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">−</m:mo><m:msub><m:mi>s</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">(</m:mo><m:mrow><m:msub><m:mi>s</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>3</m:mn></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">−</m:mo><m:msub><m:mi>s</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow><m:mo stretchy="false">)</m:mo><m:mtext>.</m:mtext><m:mtext>.</m:mtext><m:mtext>.</m:mtext><m:mtext>.</m:mtext><m:mo stretchy="false">(</m:mo><m:mrow><m:msub><m:mi>s</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>n</m:mi></m:mrow></m:mstyle></m:msub><m:mo stretchy="false">−</m:mo><m:msub><m:mi>s</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mn>1</m:mn></m:mrow></m:mstyle></m:msub></m:mrow><m:mo stretchy="false">)</m:mo></m:mrow></m:mfrac></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{K rSub { size 8{S1} } = left [ \( s+s rSub { size 8{1} }  \)  {  {C \( s \) }  over  {R \( s \) } }  right ] rSub { size 8{S= - S1} } = {  {C \(  - s rSub { size 8{1} }  \) }  over  { \( s rSub { size 8{2} }  - s rSub { size 8{1} }  \)  \( s rSub { size 8{3} }  - s rSub { size 8{1} }  \)  "."  "."  "."  "."  \( s rSub { size 8{n} }  - s rSub { size 8{1} }  \) } } } {}</m:annotation></m:semantics></m:math> (6.5)</para>
@@ -951,7 +946,7 @@
       <section id="id-132192255732">
         <title>1. Hàm chuyễn là một hàm hữu tỷ, bao gồm tỷ số của những đa thức theo biến số phức s.</title>
         <para id="id23225719"><m:math><m:semantics><m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mi>G</m:mi><m:mo stretchy="false">(</m:mo><m:mi>s</m:mi><m:mrow><m:mo stretchy="false">)</m:mo><m:mo stretchy="false">=</m:mo><m:mfrac><m:mrow><m:msub><m:mi>b</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub><m:mrow><m:munderover><m:mo stretchy="false">∑</m:mo><m:mrow><m:mi>i</m:mi><m:mo stretchy="false">=</m:mo><m:mn>0</m:mn></m:mrow><m:mi>m</m:mi></m:munderover><m:mrow><m:mfrac><m:msub><m:mi>b</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>i</m:mi></m:mrow></m:mstyle></m:msub><m:msub><m:mi>b</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mi>m</m:mi></m:mrow></m:mstyle></m:msub></m:mfrac><m:msup><m:mi>s</m:mi><m:mstyle fontsize="8pt"><m:mrow><m:mstyle fontsize="7pt"><m:mrow><m:mi>i</m:mi></m:mrow></m:mstyle></m:mrow></m:mstyle></m:msup></m:mrow></m:mrow></m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:munderover><m:mo stretchy="false">∑</m:mo><m:mrow><m:mi>i</m:mi><m:mo stretchy="false">=</m:mo><m:mn>0</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:mrow><m:msub><m:mi>a</m:mi><m:mi>i</m:mi></m:msub><m:mstyle fontsize="12pt"><m:mrow><m:msup><m:mi>s</m:mi><m:mi>i</m:mi></m:msup></m:mrow></m:mstyle></m:mrow></m:mrow></m:mrow></m:mstyle></m:mfrac></m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:mrow/><m:mo stretchy="false">=</m:mo><m:mfrac><m:mrow><m:mi>m</m:mi><m:mrow><m:munderover><m:mo stretchy="false">∏</m:mo><m:mrow><m:mi>i</m:mi><m:mo stretchy="false">−</m:mo><m:mn>1</m:mn></m:mrow><m:mi>m</m:mi></m:munderover><m:mfenced open="" close=""><m:mrow><m:mi>s</m:mi><m:mo stretchy="false">+</m:mo><m:msub><m:mi>z</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:mfenced></m:mrow></m:mrow><m:mstyle fontsize="12pt"><m:mrow><m:mrow><m:munderover><m:mo stretchy="false">∏</m:mo><m:mrow><m:mi>i</m:mi><m:mo stretchy="false">=</m:mo><m:mn>1</m:mn></m:mrow><m:mi>n</m:mi></m:munderover><m:mfenced open="" close=""><m:mrow><m:mi>s</m:mi><m:mo stretchy="false">+</m:mo><m:msub><m:mi>p</m:mi><m:mi>i</m:mi></m:msub></m:mrow></m:mfenced></m:mrow></m:mrow></m:mstyle></m:mfrac></m:mrow></m:mrow></m:mstyle></m:mrow></m:mrow></m:mstyle><m:mrow/></m:mrow><m:annotation encoding="StarMath 5.0"> size 12{G \( s \) = {  {b rSub { size 8{m} }  Sum cSub {i=0}  cSup {m}  { {  {b rSub { size 8{i} } }  over  {b rSub { size 8{m} } } } s rSup { size 8{ size 7{i}} } } }  over  { size 12{ Sum cSub {i=0}  cSup {n}  {a rSub {i}  size 12{s rSup {i} }} } } }  size 12{ {}= {  {m Prod cSub {i - 1}  cSup {m}  { left (s+z rSub {i}  right )} }  over  { size 12{ Prod cSub {i=1}  cSup {n}  { left (s+p rSub {i}  right )} } } } }} {}</m:annotation></m:semantics></m:math> (6.14)</para>
-        <para id="id21009943"><m:math><m:semantics><m:mrow/><m:annotation encoding="StarMath 5.0">{}</m:annotation></m:semantics></m:math>Trong đó các (s+zi ) là những thừa số của đa thức tử và ( s+pi ) là những thừa số của đa thức mẫu.</para>
+        <para id="id21009943">Trong đó các (s+zi ) là những thừa số của đa thức tử và ( s+pi ) là những thừa số của đa thức mẫu.</para>
         <para id="id21010007">a) Những giá trị của s làm cho trị tuyệt đối của |G(s)| bằng zero thì gọi là các zero của G(s).</para>
         <para id="id21010018">b) Những giá trị của s làm cho trị tuyệt đối của |G(s)| tiến tới vô cực thì gọi là các cực (pole) của G(s).</para>
         <para id="id21010030">* Thí dụ 6.5 : Xem một hệ thống có hàm chuyễn</para>
@@ -1085,7 +1080,7 @@
               <m:mrow>
                 <m:mtable>
                   <m:mtr>
-                    <m:mrow>
+                    <m:mtd>
                       <m:mstyle fontsize="12pt">
                         <m:mrow>
                           <m:mrow>
@@ -1256,10 +1251,10 @@
                         </m:mrow>
                       </m:mstyle>
                       <m:mrow/>
-                    </m:mrow>
+                    </m:mtd>
                   </m:mtr>
                   <m:mtr>
-                    <m:mrow>
+                    <m:mtd>
                       <m:mrow>
                         <m:msub>
                           <m:mi>c</m:mi>
@@ -1409,7 +1404,7 @@
                       <m:mtext>.</m:mtext>
                       <m:mi>v</m:mi>
                       <m:mrow/>
-                    </m:mrow>
+                    </m:mtd>
                   </m:mtr>
                 </m:mtable>
                 <m:mrow/>
@@ -1520,7 +1515,7 @@ c rSub { size 8{1} }  equiv `` {  {b rSub { size 8{1} } a rSub { size 8{n - 3} }
               <m:mrow>
                 <m:mtable>
                   <m:mtr>
-                    <m:mrow>
+                    <m:mtd>
                       <m:mstyle fontsize="12pt">
                         <m:mrow>
                           <m:mrow>
@@ -1552,10 +1547,10 @@ c rSub { size 8{1} }  equiv `` {  {b rSub { size 8{1} } a rSub { size 8{n - 3} }
                         </m:mrow>
                       </m:mstyle>
                       <m:mrow/>
-                    </m:mrow>
+                    </m:mtd>
                   </m:mtr>
                   <m:mtr>
-                    <m:mrow>
+                    <m:mtd>
                       <m:mrow>
                         <m:msub>
                           <m:mi>Δ</m:mi>
@@ -1694,10 +1689,10 @@ c rSub { size 8{1} }  equiv `` {  {b rSub { size 8{1} } a rSub { size 8{n - 3} }
                         </m:mstyle>
                       </m:msub>
                       <m:mrow/>
-                    </m:mrow>
+                    </m:mtd>
                   </m:mtr>
                   <m:mtr>
-                    <m:mrow>
+                    <m:mtd>
                       <m:mrow>
                         <m:msub>
                           <m:mi>Δ</m:mi>
@@ -1935,10 +1930,10 @@ c rSub { size 8{1} }  equiv `` {  {b rSub { size 8{1} } a rSub { size 8{n - 3} }
                         </m:mstyle>
                       </m:msub>
                       <m:mrow/>
-                    </m:mrow>
+                    </m:mtd>
                   </m:mtr>
                   <m:mtr>
-                    <m:mrow>
+                    <m:mtd>
                       <m:mrow>
                         <m:mi/>
                         <m:mo stretchy="false">−</m:mo>
@@ -2003,7 +1998,7 @@ c rSub { size 8{1} }  equiv `` {  {b rSub { size 8{1} } a rSub { size 8{n - 3} }
                         </m:mstyle>
                       </m:msubsup>
                       <m:mrow/>
-                    </m:mrow>
+                    </m:mtd>
                   </m:mtr>
                 </m:mtable>
                 <m:mrow/>
